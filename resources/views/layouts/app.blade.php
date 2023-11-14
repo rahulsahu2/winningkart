@@ -3,7 +3,7 @@
 <?php
     $path = env('API_IMAGE_URL');
     $root = env('API_URL');
-    
+
     $jsonArray =  json_decode(\App\Services\APIServices\Common::GetHeader(), true);
     $mydata = json_decode(\App\Services\APIServices\Common::GetShopHeader(), true);
     $csetting = json_decode(\App\Services\APIServices\Common::GetCommonHeader(), true);
@@ -123,9 +123,11 @@
                                                             <h3>Topbrands</h3>
                                                             <div class="topBrandListinner" id="list">
                                                                 <h4>#</h4>
+                                                                @if($jsonArray && array_key_exists("brands",$jsonArray))
                                                                 @foreach($jsonArray['brands'] as $arr)
                                                                 <a href="{{route('brand.show',['id' => $arr['id']])}}">{{$arr['name']}}</a>
                                                                 @endforeach
+                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -133,17 +135,20 @@
                                                         <div class="bransLaunchesmain">
                                                             <ul class="nav nav-pills brandPills" id="pills-tab"
                                                                 role="tablist">
+                                                                @if($jsonArray && array_key_exists("additionalCategory",$jsonArray))
                                                                 @foreach($jsonArray['additionalCategory'] as $menuItemsCategoryBrand)
                                                                     <li class="nav-item brandItem" role="presentation">
                                                                         <button class="nav-link brandLink"
                                                                             id="pills-popular-tab" data-toggle="pill"
                                                                             data-target="#pills-{{$menuItemsCategoryBrand['category_id']}}" type="button"
                                                                             role="tab" aria-controls="pills-{{$menuItemsCategoryBrand['category_id']}}"
-                                                                            aria-selected="true">{{$menuItemsCategoryBrand['category']['name']}}</button>
+                                                                            aria-selected="true">{{$menuItemsCategoryBrand['category']['name'] ?? ''}}</button>
                                                                     </li>
                                                                 @endforeach
+                                                                @endif
                                                             </ul>
                                                             <div class="tab-content" id="pills-tabContent">
+                                                            @if($jsonArray && array_key_exists("additionalCategory",$jsonArray))
                                                                  @foreach($jsonArray['additionalCategory'] as $menuItemsCategoryBrand)
                                                                 <div class="tab-pane" id="pills-{{$menuItemsCategoryBrand['category_id']}}"
                                                                     role="tabpanel" aria-labelledby="pills-{{$menuItemsCategoryBrand['category_id']}}-tab">
@@ -151,8 +156,8 @@
                                                                         @foreach($jsonArray['featuredBrands'] as $brand)
                                                                             @if($brand['category_id'] == $menuItemsCategoryBrand['category_id'])
                                                                             <div class="brnadimgbxcol">
-                                                                                <a href="{{route('brand.show',['id' => $brand['brand_id']])}}">
-                                                                                <img src="{{env('API_IMAGE_URL').$brand['brands']['logo']}}" alt="{{$brand['brands']['slug']}}">
+                                                                                <a href="{{route('brand.show',['id' => ($brand['brand_id'] ?? '')])}}">
+                                                                                <img src="{{env('API_IMAGE_URL').($brand['brands']['logo'] ?? '')}}" alt="{{$brand['brands']['slug'] ?? ''}}">
                                                                                 </a>
                                                                             </div>
                                                                             @endif
@@ -160,6 +165,7 @@
                                                                     </div>
                                                                 </div>
                                                                 @endforeach
+                                                                @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -174,24 +180,27 @@
                                                     <div class="row mx-0">
                                                         <div class="col-lg-8 pr-0">
                                                             <div class="row winkartlinks">
-                                                                @foreach($mydata['categories'] as $category)
-                                                                <div class="col-lg-3 px-2">
-                                                                    <div class="winkartlinkbx">
-                                                                        <a href="category/{{$category['id']}}">{{$category['name']}}</a>
-                                                                        <ul>
-                                                                            @foreach($category['active_sub_categories'] as $subCategory)
-                                                                            <li><a href="/subcategory-by-category/{{$subCategory['id']}}">{{$subCategory['name']}}</a></li>
-                                                                            @endforeach
-                                                                        </ul>
+                                                                @if($mydata && array_key_exists("categories",$mydata))
+                                                                    @foreach($mydata['categories'] as $category)
+                                                                    <div class="col-lg-3 px-2">
+                                                                        <div class="winkartlinkbx">
+                                                                            <a href="category/{{$category['id']}}">{{$category['name']}}</a>
+                                                                            <ul>
+                                                                                @foreach($category['active_sub_categories'] as $subCategory)
+                                                                                <li><a href="/subcategory-by-category/{{$subCategory['id']}}">{{$subCategory['name']}}</a></li>
+                                                                                @endforeach
+                                                                            </ul>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                @endforeach
+                                                                    @endforeach
+                                                                @endif
                                                             </div>
                                                         </div>
                                                         <div class="col-lg-4 pr-0">
                                                             <div class="winkartmenubanner">
-                                                                <img src="{{env('API_IMAGE_URL').$mydata['shopPageSidebarBanner']['image']}}"
-                                                                    alt="">
+                                                            @if($mydata && array_key_exists("shopPageSidebarBanner",$mydata))
+                                                                <img src="{{env('API_IMAGE_URL').$mydata['shopPageSidebarBanner']['image']}}" alt="">
+                                                            @endif
                                                             </div>
                                                         </div>
                                                     </div>
@@ -745,42 +754,51 @@
                                 </a>
                             </div>
                             <p class="footerAbtus">
+                            @if($footer && array_key_exists("about_us",$footer))
                                {{$footer['about_us']}}
+                            @endif
                             </p>
 
                             <div class="socailLinks">
+                            @if($csetting && array_key_exists("social_links",$csetting))
                                 @foreach($csetting['social_links'] as $social)
                                 <a href="{{$social['link']}}"><i class="{{$social['icon']}}"></i></a>
                                 @endforeach
+                            @endif
                             </div>
 
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
                         <div class="footerLinkBox">
+                        @if($csetting && array_key_exists("footer_first_col",$csetting))
                             <h3>{{$csetting['footer_first_col']['columnTitle']}}</h3>
                             @foreach($csetting['footer_first_col']['col_links'] as $links)
                             <a href="{{$links['link']}}" class="footerLink">{{$links['title']}}</a>
                             @endforeach
+                        @endif
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
                         <div class="footerLinkBox">
+                        @if($csetting && array_key_exists("footer_second_col",$csetting))
                         <h3>{{$csetting['footer_second_col']['columnTitle']}}</h3>
                             @foreach($csetting['footer_second_col']['col_links'] as $links)
                             <a href="{{$links['link']}}" class="footerLink">{{$links['title']}}</a>
                             @endforeach
+                        @endif
                         </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
                         <div class="footerLinkBox">
+                        @if($csetting && array_key_exists("footer_third_col",$csetting))
                         <h3>{{$csetting['footer_third_col']['columnTitle']}}</h3>
                             @foreach($csetting['footer_third_col']['col_links'] as $links)
                             <a href="{{$links['link']}}" class="footerLink">{{$links['title']}}</a>
                             @endforeach
+                        @endif
                         </div>
                     </div>
-
                 </div>
             </div>
 

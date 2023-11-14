@@ -4,6 +4,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\OtpController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminController;
@@ -21,6 +22,9 @@ Route::get('/shipping-returns',[PageController::class,'ShippingReturns'])->name(
 
 Route::get('/about-us',[PageController::class,'AboutUs'])->name('AboutUs');
 Route::get('/contact-us',[PageController::class,'ContactUs'])->name('ContactUs');
+
+//error pages
+Route::get('/404',[ErrorController::class,'Error404'])->name('ContactUs');
 
 Route::get('/blogs',[BlogController::class,'Blogs'])->name('Blogs');
 Route::get('/blog/{slug}',[BlogController::class,'Blog'])->name('Blog');

@@ -2,6 +2,7 @@
 
 namespace App\Services\APIServices;
 
+use Exception;
 use GuzzleHttp\Client;
 
 class Common
@@ -15,8 +16,14 @@ class Common
     }
 
     private function GetResult($url){
+        try{
         $response = $this->client->get($url);
         return $response->getBody()->getContents();
+        }
+        catch(Exception $e)
+        {
+            return false;
+        }
     }
 
     public function GetSetting(){

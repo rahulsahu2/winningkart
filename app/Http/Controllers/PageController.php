@@ -33,4 +33,6 @@ class PageController extends Controller
         $data = $this->common->GetFAQ();
         return view('pages.faq',compact('data'));
     }
+
+    
 }

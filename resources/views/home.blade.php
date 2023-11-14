@@ -13,12 +13,13 @@
         <!-- More Categories For You -->
         <section>
             <div class="container-fluid">
-                <h3 class="secTitle">{{$jsonArray['section_title'][0]['custom']}}</h3>
+                <h3 class="secTitle">{{$jsonArray['section_title'][0]['custom'] ?? ""}}</h3>
 
                 <div class="moreCatemain">
                     <div class="swiper moreCatemainSlider">
                         <div class="swiper-wrapper">
-                            <?php foreach ($jsonArray['homepage_categories'] as $key => $value) { ?>
+                        @if($jsonArray && array_key_exists("homepage_categories",$jsonArray))
+                            @foreach($jsonArray['homepage_categories'] as $key => $value)
                                 <div class="swiper-slide">
                                     <div class="moreCateCard">
                                         <div class="moreCateCardImg">
@@ -29,7 +30,8 @@
                                         <h3>{{$value['name']}}</h3>
                                     </div>
                                 </div>
-                            <?php }?>                          
+                            @endforeach
+                            @endif
                         </div>
                         <div class="swiper-button-next custNavbtn"></div>
                         <div class="swiper-button-prev custNavbtn"></div>
@@ -40,10 +42,11 @@
 
         <section>
             <div class="container-fluid">
-                <h3 class="secTitle">{{$jsonArray['section_title'][1]['custom']}}</h3>
+                <h3 class="secTitle">{{$jsonArray['section_title'][1]['custom'] ?? ""}}</h3>
                 <div class="beautyslidemain">
                     <div class="swiper beautySlider">
-                        <div class="swiper-wrapper">
+                        <div class="swiper-wrapper"> 
+                        @if($jsonArray && array_key_exists("sliders",$jsonArray))
                             @foreach($jsonArray['sliders'] as $slider)
                                 @if($slider['status'] == 1)
                                     <div class="swiper-slide beautySliderslide">
@@ -55,6 +58,7 @@
                                     </div>
                                 @endif
                             @endforeach
+                        @endif
                         </div>
                         <div class="swiper-button-next custNavbtn"></div>
                         <div class="swiper-button-prev custNavbtn"></div>
@@ -64,8 +68,9 @@
         </section>
         <section>
             <div class="container">
-                <h3 class="secTitle text-center">{{$jsonArray['section_title'][2]['custom']}}</h3>
+                <h3 class="secTitle text-center">{{$jsonArray['section_title'][2]['custom'] ?? ""}}</h3>
                 <div class="row">
+                @if($jsonArray && array_key_exists("bestProducts",$jsonArray))
                     @foreach($jsonArray['bestProducts'] as $product)
                         <div class="col-lg-3 col-md-6 px-2">
                             <a href="/products/{{$product['id']}}" class="text-decoration-none">
@@ -82,43 +87,44 @@
                             </a>
                         </div>
                     @endforeach
+                    @endif
                 </div>
             </div>
         </section>
         <!-- Shop By COncern -->
         <section>
             <div class="container-fluid">
-                <h3 class="secTitle">{{$jsonArray['section_title'][3]['custom']}}</h3>
+                <h3 class="secTitle">{{$jsonArray['section_title'][3]['custom'] ?? ""}}</h3>
                 <div class="row">
-                    <?php $trproducts = $GetTopRatedProducts['reviews']['data']; ?>
+                    <?php $trproducts = $GetTopRatedProducts['reviews']['data'] ?? []; ?>
                     <div class="col-lg-6">
                         <div class="boxesRow">
                             <?php $arrCount = 0 ?>
                             @if(count($trproducts) > $arrCount)
                             <div class="boxesCol">
-                                <img src="{{env('API_IMAGE_URL').$trproducts[$arrCount]['product']['thumb_image']}}" alt="{{$trproducts[$arrCount]['product']['slug']}}">
-                                <a href="/products/{{$trproducts[$arrCount]['product']['id']}}">{{$trproducts[$arrCount]['product']['name']}}</a>
+                                <img src="{{env('API_IMAGE_URL').$trproducts[$arrCount]['product']['thumb_image'] ?? ''}}" alt="{{$trproducts[$arrCount]['product']['slug'] ?? ''}}">
+                                <a href="/products/{{$trproducts[$arrCount]['product']['id'] ?? ''}}">{{$trproducts[$arrCount]['product']['name'] ?? ''}}</a>
                             </div>
                             @endif
                             <?php $arrCount = 1 ?>
                             @if(count($trproducts) > $arrCount)
                             <div class="boxesCol">
-                                <img src="{{env('API_IMAGE_URL').$trproducts[$arrCount]['product']['thumb_image']}}" alt="{{$trproducts[$arrCount]['product']['slug']}}">
-                                <a href="/products/{{$trproducts[$arrCount]['product']['id']}}">{{$trproducts[$arrCount]['product']['name']}}</a>
+                                <img src="{{env('API_IMAGE_URL').$trproducts[$arrCount]['product']['thumb_image'] ?? ''}}" alt="{{$trproducts[$arrCount]['product']['slug'] ?? ''}}">
+                                <a href="/products/{{$trproducts[$arrCount]['product']['id'] ?? ''}}">{{$trproducts[$arrCount]['product']['name'] ?? ''}}</a>
                             </div>
                             @endif
                             <?php $arrCount = 1 ?>
                             @if(count($trproducts) > $arrCount)
                             <div class="boxesCol">
-                                <img src="{{env('API_IMAGE_URL').$trproducts[$arrCount]['product']['thumb_image']}}" alt="{{$trproducts[$arrCount]['product']['slug']}}">
-                                <a href="/products/{{$trproducts[$arrCount]['product']['id']}}">{{$trproducts[$arrCount]['product']['name']}}</a>
+                                <img src="{{env('API_IMAGE_URL').$trproducts[$arrCount]['product']['thumb_image'] ?? ''}}" alt="{{$trproducts[$arrCount]['product']['slug'] ?? ''}}">
+                                <a href="/products/{{$trproducts[$arrCount]['product']['id'] ?? ''}}">{{$trproducts[$arrCount]['product']['name'] ?? ''}}</a>
                             </div>
                             @endif
                             <?php $arrCount = 1 ?>
                             @if(count($trproducts) > $arrCount)
                             <div class="boxesCol">
-                                <img src="{{env('API_IMAGE_URL').$trproducts[$arrCount]['product']['thumb_image']}}" alt="{{$trproducts[$arrCount]['product']['slug']}}">
-                                <a href="/products/{{$trproducts[$arrCount]['product']['id']}}">{{$trproducts[$arrCount]['product']['name']}}</a>
+                                <img src="{{env('API_IMAGE_URL').$trproducts[$arrCount]['product']['thumb_image'] ?? ''}}" alt="{{$trproducts[$arrCount]['product']['slug'] ?? ''}}">
+                                <a href="/products/{{$trproducts[$arrCount]['product']['id'] ?? ''}}">{{$trproducts[$arrCount]['product']['name'] ?? ''}}</a>
                             </div>
                             @endif
                         </div>
@@ -129,8 +135,8 @@
                                 <?php $arrCount = 1 ?>
                                 @if(count($trproducts) > $arrCount)
                                     <div class="largeBanner">
-                                    <img src="{{env('API_IMAGE_URL').$trproducts[$arrCount]['product']['thumb_image']}}" alt="{{$trproducts[$arrCount]['product']['slug']}}">
-                                    <a href="/products/{{$trproducts[$arrCount]['product']['id']}}">{{$trproducts[$arrCount]['product']['name']}}</a>
+                                    <img src="{{env('API_IMAGE_URL').$trproducts[$arrCount]['product']['thumb_image'] ?? ''}}" alt="{{$trproducts[$arrCount]['product']['slug'] ?? ''}}">
+                                    <a href="/products/{{$trproducts[$arrCount]['product']['id'] ?? ''}}">{{$trproducts[$arrCount]['product']['name'] ?? ''}}</a>
                                     </div>
                                 @endif
                             </div>
@@ -139,15 +145,15 @@
                                     <?php $arrCount = 1 ?>
                                     @if(count($trproducts) > $arrCount)
                                         <div class="boxesCol w-100">
-                                        <img src="{{env('API_IMAGE_URL').$trproducts[$arrCount]['product']['thumb_image']}}" alt="{{$trproducts[$arrCount]['product']['slug']}}">
-                                        <a href="/products/{{$trproducts[$arrCount]['product']['id']}}">{{$trproducts[$arrCount]['product']['name']}}</a>
+                                        <img src="{{env('API_IMAGE_URL').$trproducts[$arrCount]['product']['thumb_image'] ?? ''}}" alt="{{$trproducts[$arrCount]['product']['slug'] ?? ''}}">
+                                        <a href="/products/{{$trproducts[$arrCount]['product']['id'] ?? ''}}">{{$trproducts[$arrCount]['product']['name'] ?? ''}}</a>
                                         </div>
                                     @endif
                                     <?php $arrCount = 1 ?>
                                     @if(count($trproducts) > $arrCount)
                                         <div class="boxesCol w-100">
-                                        <img src="{{env('API_IMAGE_URL').$trproducts[$arrCount]['product']['thumb_image']}}" alt="{{$trproducts[$arrCount]['product']['slug']}}">
-                                        <a href="/products/{{$trproducts[$arrCount]['product']['id']}}">{{$trproducts[$arrCount]['product']['name']}}</a>
+                                        <img src="{{env('API_IMAGE_URL').$trproducts[$arrCount]['product']['thumb_image'] ?? ''}}" alt="{{$trproducts[$arrCount]['product']['slug'] ?? ''}}">
+                                        <a href="/products/{{$trproducts[$arrCount]['product']['id'] ?? ''}}">{{$trproducts[$arrCount]['product']['name'] ?? ''}}</a>
                                         </div>
                                     @endif
                                 </div>
@@ -161,8 +167,9 @@
         <!-- Shop By COncern -->
         <section>
             <div class="container-fluid">
-                <h3 class="secTitle">{{$jsonArray['section_title'][4]['custom']}}</h3>
+                <h3 class="secTitle">{{$jsonArray['section_title'][4]['custom'] ?? ''}}</h3>
                 <div class="row justify-content-center">
+                    @if($FlashSaleProductsList && array_key_exists("products",$FlashSaleProductsList))
                     @foreach($FlashSaleProductsList['products']['data'] as $flashsale)
                     <div class="col-lg-4 col-md-6">
                         <div class="brandsCard">
@@ -178,6 +185,7 @@
                         </div>
                     </div>
                     @endforeach
+                    @endif
                 </div>
             </div>
         </section>
@@ -188,19 +196,19 @@
             <div class="container-fluid">
                 <!-- <h3 class="secTitle">Top Brands</h3> -->
                 <div class="row justify-content-center">
-                    <?php $banner = $jsonArray['sliderBannerOne'] ?>
+                    <?php $banner = $jsonArray['sliderBannerOne'] ?? [] ?>
                     <div class="col-lg-6 col-md-6">
                         <div class="bannersCard">
-                            <a href="/products/{{$banner['id']}}">
-                                <img src="{{env('API_IMAGE_URL').$banner['image']}}" alt="{{$banner['product_slug']}}">
+                            <a href="/products/{{$banner['id'] ?? ''}}">
+                                <img src="{{env('API_IMAGE_URL').$banner['image'] ?? ''}}" alt="{{$banner['product_slug'] ?? ''}}">
                             </a>
                         </div>
                     </div>
-                    <?php $banner = $jsonArray['sliderBannerTwo'] ?>
+                    <?php $banner = $jsonArray['sliderBannerTwo'] ?? [] ?>
                     <div class="col-lg-6 col-md-6">
                         <div class="bannersCard">
-                        <a href="/products/{{$banner['id']}}">
-                                <img src="{{env('API_IMAGE_URL').$banner['image']}}" alt="{{$banner['product_slug']}}">
+                        <a href="/products/{{$banner['id'] ?? ''}}">
+                                <img src="{{env('API_IMAGE_URL').$banner['image'] ?? ''}}" alt="{{$banner['product_slug'] ?? ''}}">
                             </a>
                         </div>
                     </div>
@@ -211,10 +219,11 @@
         <!-- Only at winnigkart -->
         <section>
             <div class="container-fluid">
-                <h3 class="secTitle">{{$jsonArray['section_title'][5]['custom']}}</h3>
+                <h3 class="secTitle">{{$jsonArray['section_title'][5]['custom'] ?? ''}}</h3>
                 <div class="beautyslidemain">
                     <div class="swiper onlyAtWinningSlider">
                         <div class="swiper-wrapper">
+                        @if($seller && array_key_exists("products",$seller))
                             @foreach($seller['products']['data'] as $fproduct)
                                 <div class="swiper-slide">
                                     <div class="onlyAtWinningcard">
@@ -224,6 +233,7 @@
                                     </div>
                                 </div>
                             @endforeach
+                        @endif
                         </div>
                         <div class="swiper-button-next custNavbtn"></div>
                         <div class="swiper-button-prev custNavbtn"></div>
@@ -234,11 +244,11 @@
 
         <section>
             <div class="container-fluid">
-                <h3 class="secTitle">{{$jsonArray['section_title'][6]['custom']}}</h3>
+                <h3 class="secTitle">{{$jsonArray['section_title'][6]['custom'] ?? ''}}</h3>
                 <div class="bannersCard">
-                    <?php $bannersale =  $jsonArray['flashSale']; ?>
-                    <a href="/sale/{{$bannersale['id']}}">
-                        <img src="{{env('API_IMAGE_URL').$bannersale['homepage_image']}}" alt="{{$bannersale['title']}}">
+                    <?php $bannersale =  $jsonArray['flashSale'] ?? []; ?>
+                    <a href="/sale/{{$bannersale['id'] ?? ''}}">
+                        <img src="{{env('API_IMAGE_URL').$bannersale['homepage_image'] ?? ''}}" alt="{{$bannersale['title'] ?? ''}}">
                     </a>
                 </div>
             </div>
@@ -247,11 +257,12 @@
         <!-- Brand Featured In -->
         <section>
             <div class="container-fluid">
-                <h3 class="secTitle">{{$jsonArray['section_title'][7]['custom']}}</h3>
+                <h3 class="secTitle">{{$jsonArray['section_title'][7]['custom'] ?? ''}}</h3>
 
                 <div class="brandfeatInmain">
                     <div class="swiper brandfeatInSlider">
                         <div class="swiper-wrapper">
+                            @if($NewProducts && array_key_exists("newProducts",$NewProducts))
                             @foreach($NewProducts['newProducts'] as $newproduct)
                             <div class="swiper-slide">
                                 <div class="productSlideCard">
@@ -272,6 +283,7 @@
                                 </div>
                             </div>
                             @endforeach
+                            @endif
                         </div>
                         <div class="swiper-button-next custNavbtn"></div>
                         <div class="swiper-button-prev custNavbtn"></div>
@@ -286,7 +298,7 @@
         <!-- Influencer Picks -->
         <section>
             <div class="container-fluid">
-                <h3 class="secTitle">{{$jsonArray['section_title'][8]['custom']}}</h3>
+                <h3 class="secTitle">{{$jsonArray['section_title'][8]['custom'] ?? ''}}</h3>
 
                 <div class="influenceMain">
                     <div class="swiper influenceSlider">
@@ -366,7 +378,7 @@
         <!-- Top Categories Peoduct -->
         <section>
             <div class="container-fluid">
-                <h3 class="secTitle">{{$jsonArray['section_title'][9]['custom']}}</h3>
+                <h3 class="secTitle">{{$jsonArray['section_title'][9]['custom'] ?? ''}}</h3>
 
                 <div class="brandfeatInmain">
                     <div class="swiper brandfeatInSlider">
@@ -497,7 +509,7 @@
         <!-- Discover More at winning kart -->
         <section>
             <div class="container-fluid">
-                <h3 class="secTitle">{{$jsonArray['section_title'][10]['custom']}}</h3>
+                <h3 class="secTitle">{{$jsonArray['section_title'][10]['custom'] ?? ''}}</h3>
 
                 <div class="discovermoreMain">
                     <div class="swiper discovermoreSlider">
