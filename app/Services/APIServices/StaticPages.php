@@ -18,6 +18,14 @@ class StaticPages
         return $response->getBody()->getContents();
     }
 
+    public function GetAboutUs(){
+        return $this->GetResult(APIPaths::$baseUrl.APIPaths::ABOUT_US);
+    }
+
+    public function GetCancellationReturn(){
+        return $this->GetResult(APIPaths::$baseUrl.APIPaths::CANCELLATION_RETURN);
+    }
+
     public function GetPrivacyPolicy(){
         return $this->GetResult(APIPaths::$baseUrl.APIPaths::PRIVACY_POLICY);
     }
@@ -32,7 +40,7 @@ class StaticPages
         return $this->GetResult(APIPaths::$baseUrl.APIPaths::SELLER_TERMS_CONDITIONS);
     }
     public function GetShippingAndReturn(){
-        return $this->GetResult(APIPaths::$baseUrl.APIPaths::PRIVACY_POLICY);
+        return $this->GetResult(APIPaths::$baseUrl.APIPaths::SHIPPING_AND_RETURNS);
     }
 
 }

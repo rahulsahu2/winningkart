@@ -20,8 +20,9 @@ Class APIPaths{
     const TERMS_AND_CONDITIONS = "terms-and-conditions";
     const FAQ = "faq";
     const SELLER_TERMS_CONDITIONS = "seller-terms-conditoins";
-    const SHIPPING_AND_RETURNS = "shipping-returns";
+    const SHIPPING_AND_RETURNS = "page/shipping-returns";
     const ABOUT_US = "about-us";
+    const CANCELLATION_RETURN = "page/cancelletion-return";
     const CONTACT_US = "contact-us";
 
     //static pages end.

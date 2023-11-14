@@ -33,6 +33,18 @@ class PageController extends Controller
         $data = $this->common->GetFAQ();
         return view('pages.faq',compact('data'));
     }
+    public function AboutUs(){
+        $data = $this->common->GetAboutUs();
+        return view('pages.aboutus',compact('data'));
+    }
 
+    public function ShippingReturns(){
+        $data = $this->common->GetShippingAndReturn();
+        return view('pages.shipping-returns',compact('data'));
+    }
+    public function CancellationReturns(){
+        $data = $this->common->GetCancellationReturn();
+        return view('pages.cancellation-policy',compact('data'));
+    }
     
 }
