@@ -18,6 +18,7 @@ Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('/privacy-policy',[PageController::class,'privacyPolicy'])->name('privacyPolicy');
 Route::get('/tnc',[PageController::class,'TermsandConditions'])->name('TermsandConditions');
 Route::get('/faq',[PageController::class,'FaQ'])->name('FaQ');
+Route::get('/faq/{slug}',[PageController::class,'FaqDetails'])->name('FaqDetail');
 Route::get('/shipping-returns',[PageController::class,'ShippingReturns'])->name('ShippingReturns');
 Route::get('/cancellation-returns',[PageController::class,'CancellationReturns'])->name('CancellationReturns');
 

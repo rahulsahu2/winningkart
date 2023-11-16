@@ -11,7 +11,7 @@
 ?>
         
         <!-- More Categories For You -->
-        <section>
+        <!-- <section>
             <div class="container-fluid">
                 <h3 class="secTitle">{{$jsonArray['section_title'][0]['custom'] ?? ""}}</h3>
 
@@ -38,7 +38,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
 
         <section>
             <div class="container-fluid">
@@ -96,66 +96,54 @@
             <div class="container-fluid">
                 <h3 class="secTitle">{{$jsonArray['section_title'][3]['custom'] ?? ""}}</h3>
                 <div class="row">
-                    <?php $trproducts = $GetTopRatedProducts['reviews']['data'] ?? []; ?>
+                    <?php $trproducts = $jsonArray['shopbyconcern'] ?? [];?>
                     <div class="col-lg-6">
                         <div class="boxesRow">
-                            <?php $arrCount = 0 ?>
-                            @if(count($trproducts) > $arrCount)
-                            <div class="boxesCol">
-                                <img src="{{env('API_IMAGE_URL').$trproducts[$arrCount]['product']['thumb_image'] ?? ''}}" alt="{{$trproducts[$arrCount]['product']['slug'] ?? ''}}">
-                                <a href="/products/{{$trproducts[$arrCount]['product']['id'] ?? ''}}">{{$trproducts[$arrCount]['product']['name'] ?? ''}}</a>
-                            </div>
-                            @endif
-                            <?php $arrCount = 1 ?>
-                            @if(count($trproducts) > $arrCount)
-                            <div class="boxesCol">
-                                <img src="{{env('API_IMAGE_URL').$trproducts[$arrCount]['product']['thumb_image'] ?? ''}}" alt="{{$trproducts[$arrCount]['product']['slug'] ?? ''}}">
-                                <a href="/products/{{$trproducts[$arrCount]['product']['id'] ?? ''}}">{{$trproducts[$arrCount]['product']['name'] ?? ''}}</a>
-                            </div>
-                            @endif
-                            <?php $arrCount = 1 ?>
-                            @if(count($trproducts) > $arrCount)
-                            <div class="boxesCol">
-                                <img src="{{env('API_IMAGE_URL').$trproducts[$arrCount]['product']['thumb_image'] ?? ''}}" alt="{{$trproducts[$arrCount]['product']['slug'] ?? ''}}">
-                                <a href="/products/{{$trproducts[$arrCount]['product']['id'] ?? ''}}">{{$trproducts[$arrCount]['product']['name'] ?? ''}}</a>
-                            </div>
-                            @endif
-                            <?php $arrCount = 1 ?>
-                            @if(count($trproducts) > $arrCount)
-                            <div class="boxesCol">
-                                <img src="{{env('API_IMAGE_URL').$trproducts[$arrCount]['product']['thumb_image'] ?? ''}}" alt="{{$trproducts[$arrCount]['product']['slug'] ?? ''}}">
-                                <a href="/products/{{$trproducts[$arrCount]['product']['id'] ?? ''}}">{{$trproducts[$arrCount]['product']['name'] ?? ''}}</a>
-                            </div>
-                            @endif
+                            @php $count = 0; @endphp
+                            @foreach($trproducts as $arr)
+                                @if($arr['ismain'] == 0)
+                                @php $count = $count +1; @endphp
+                                <div class="boxesCol">
+                                    <img src="{{env('API_IMAGE_URL').$arr['image'] ?? ''}}" alt="{{$arr['title'] ?? ''}}">
+                                    <a href="{{$arr['link'] ?? ''}}">{{$arr['title'] ?? ''}}</a>
+                                </div>
+                                @if($count == 3)
+                                    @break
+                                @endif
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="row">
                             <div class="col-lg-6">
-                                <?php $arrCount = 1 ?>
-                                @if(count($trproducts) > $arrCount)
+                                @foreach($trproducts as $arr)
+                                    @if($arr['ismain'] == 1)
                                     <div class="largeBanner">
-                                    <img src="{{env('API_IMAGE_URL').$trproducts[$arrCount]['product']['thumb_image'] ?? ''}}" alt="{{$trproducts[$arrCount]['product']['slug'] ?? ''}}">
-                                    <a href="/products/{{$trproducts[$arrCount]['product']['id'] ?? ''}}">{{$trproducts[$arrCount]['product']['name'] ?? ''}}</a>
+                                        <img src="{{env('API_IMAGE_URL').$arr['image'] ?? ''}}" alt="{{$arr['title'] ?? ''}}">
+                                        <a href="{{$arr['id'] ?? ''}}">{{$arr['title'] ?? ''}}</a>
                                     </div>
-                                @endif
+                                    @break
+                                    @endif
+                                @endforeach
                             </div>
                             <div class="col-lg-6">
                                 <div class="boxesRow">
-                                    <?php $arrCount = 1 ?>
-                                    @if(count($trproducts) > $arrCount)
+                                    @php $count = 0; @endphp
+                                    @foreach($trproducts as $arr)
+                                        @if($arr['ismain'] == 0)
+                                        @php $count = $count +1; @endphp
+                                        @if($count > 3)
                                         <div class="boxesCol w-100">
-                                        <img src="{{env('API_IMAGE_URL').$trproducts[$arrCount]['product']['thumb_image'] ?? ''}}" alt="{{$trproducts[$arrCount]['product']['slug'] ?? ''}}">
-                                        <a href="/products/{{$trproducts[$arrCount]['product']['id'] ?? ''}}">{{$trproducts[$arrCount]['product']['name'] ?? ''}}</a>
+                                            <img src="{{env('API_IMAGE_URL').$arr[$arrCount]['image'] ?? ''}}" alt="{{$arr[$arrCount]['title'] ?? ''}}">
+                                            <a href="{{$arr[$arrCount]['link'] ?? ''}}">{{$arr[$arrCount]['title'] ?? ''}}</a>
                                         </div>
-                                    @endif
-                                    <?php $arrCount = 1 ?>
-                                    @if(count($trproducts) > $arrCount)
-                                        <div class="boxesCol w-100">
-                                        <img src="{{env('API_IMAGE_URL').$trproducts[$arrCount]['product']['thumb_image'] ?? ''}}" alt="{{$trproducts[$arrCount]['product']['slug'] ?? ''}}">
-                                        <a href="/products/{{$trproducts[$arrCount]['product']['id'] ?? ''}}">{{$trproducts[$arrCount]['product']['name'] ?? ''}}</a>
-                                        </div>
-                                    @endif
+                                        @endif
+                                        @if($count == 3)
+                                            @break
+                                        @endif
+                                        @endif
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
@@ -296,7 +284,7 @@
 
 
         <!-- Influencer Picks -->
-        <section>
+        <!-- <section>
             <div class="container-fluid">
                 <h3 class="secTitle">{{$jsonArray['section_title'][8]['custom'] ?? ''}}</h3>
 
@@ -374,7 +362,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+        </section> -->
         <!-- Top Categories Peoduct -->
         <section>
             <div class="container-fluid">

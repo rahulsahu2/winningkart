@@ -19,6 +19,7 @@ Class APIPaths{
     const PRIVACY_POLICY = "privacy-policy";
     const TERMS_AND_CONDITIONS = "terms-and-conditions";
     const FAQ = "faq";
+    const FAQ_DETAILS = "faq-details";
     const SELLER_TERMS_CONDITIONS = "seller-terms-conditoins";
     const SHIPPING_AND_RETURNS = "page/shipping-returns";
     const ABOUT_US = "about-us";

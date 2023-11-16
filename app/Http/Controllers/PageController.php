@@ -33,9 +33,14 @@ class PageController extends Controller
         $data = $this->common->GetFAQ();
         return view('pages.faq',compact('data'));
     }
+    public function FaqDetails($slug)
+    {
+        $data = $this->common->GetFaqs($slug);
+        return view('pages.faq-detail',compact('data'));
+    }
     public function AboutUs(){
         $data = $this->common->GetAboutUs();
-        return view('pages.aboutus',compact('data'));
+        return view('pages.about-us',compact('data'));
     }
 
     public function ShippingReturns(){

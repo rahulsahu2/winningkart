@@ -36,6 +36,11 @@ class StaticPages
     public function GetFAQ(){
         return $this->GetResult(APIPaths::$baseUrl.APIPaths::FAQ);
     }
+
+    public function GetFaqs($slug){
+        return $this->GetResult(APIPaths::$baseUrl.APIPaths::FAQ_DETAILS.'/'.$slug);
+    }
+
     public function GetSellerPolicy(){
         return $this->GetResult(APIPaths::$baseUrl.APIPaths::SELLER_TERMS_CONDITIONS);
     }

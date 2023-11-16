@@ -278,7 +278,7 @@
 
         @if(Route::currentRouteName() === 'home')
     
-            <div class="bottomHeader">
+            <!-- <div class="bottomHeader">
                 <div class="container">
                     <div class="bottomHeaderinner">
                         <ul>
@@ -715,7 +715,7 @@
                         </ul>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
         @endif
 
