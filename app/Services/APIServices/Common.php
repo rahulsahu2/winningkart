@@ -67,6 +67,14 @@ class Common
         return $this->GetResult($url);
     }
 
+    public function GetProducts(){
+        return $this->GetResult(APIPaths::$baseUrl.APIPaths::PRODUCTS);
+    }
+
+    public function GetProductDetails($slug){
+        return $this->GetResult(APIPaths::$baseUrl.APIPaths::PRODUCTS.$slug);
+    }
+
 
 
     public static function GetHeader(){

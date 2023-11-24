@@ -72,12 +72,12 @@
                                         <i class="bi bi-phone"></i>
                                         <span>Get App</span></a>
                                 </li>
-                                <li class="topBarlinksitem">
+                                <!-- <li class="topBarlinksitem">
                                     <a href="#!"><i class="bi bi-geo-alt"></i><span>Store & Events</span></a>
                                 </li>
                                 <li class="topBarlinksitem">
                                     <a href="#!"><i class="bi bi-gift"></i><span>Gift Card</span></a>
-                                </li>
+                                </li> -->
                                 <li class="topBarlinksitem">
                                     <a href="#!"><i class="bi bi-question-circle"></i><span>Help</span></a>
                                 </li>

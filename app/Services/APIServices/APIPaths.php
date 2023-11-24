@@ -28,6 +28,12 @@ Class APIPaths{
 
     //static pages end.
 
+    //products
+
+    const GET_ALL_CATEGORIES = 'categories';
+    const PRODUCTS = 'product/';
+    //products-end
+
     //blog-section start
 
     const BLOG="blog?page=";

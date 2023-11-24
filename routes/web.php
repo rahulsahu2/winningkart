@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PageController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\OtpController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\BrandController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -57,6 +59,14 @@ Route::get('showView',[OtpController::class,'showView'])->name('showView');
 
 Route::get('brand/{id}',[App\Http\Controllers\BrandController::class,'show'])->name('brand.show');
 
+Route::controller(CategoryController::class)->group(function () {
+    Route::get('/category/{id}', 'category')->name('category');
+});
+
+Route::controller(ProductController::class)->group(function () {
+    Route::get('/products', 'products')->name("products");
+    Route::get('/product/{slug}', 'Product_details')->name("product");
+});
 
 //authentication
 // Route::prefix('auth')->namespace('App\\Http\\Controllers\\Auth')->group(function(){
