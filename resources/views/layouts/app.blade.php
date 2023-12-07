@@ -47,6 +47,7 @@
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/swiper-bundle.min.css')}}">
+    <link rel="stylesheet" href="assets/product-zoom/xzoom.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <script>
         document.querySelector('#meta-location').setAttribute('content', location.href);
@@ -135,22 +136,25 @@
                                                         <div class="bransLaunchesmain">
                                                             <ul class="nav nav-pills brandPills" id="pills-tab"
                                                                 role="tablist">
+                                                                @php $index = 0; @endphp
                                                                 @if($jsonArray && array_key_exists("additionalCategory",$jsonArray))
                                                                 @foreach($jsonArray['additionalCategory'] as $menuItemsCategoryBrand)
                                                                     <li class="nav-item brandItem" role="presentation">
-                                                                        <button class="nav-link brandLink"
+                                                                        <button class="nav-link brandLink {{$index == 0 ? 'active' : ''}}"
                                                                             id="pills-popular-tab" data-toggle="pill"
                                                                             data-target="#pills-{{$menuItemsCategoryBrand['category_id']}}" type="button"
                                                                             role="tab" aria-controls="pills-{{$menuItemsCategoryBrand['category_id']}}"
                                                                             aria-selected="true">{{$menuItemsCategoryBrand['category']['name'] ?? ''}}</button>
                                                                     </li>
+                                                                @php $index++; @endphp
                                                                 @endforeach
                                                                 @endif
                                                             </ul>
                                                             <div class="tab-content" id="pills-tabContent">
                                                             @if($jsonArray && array_key_exists("additionalCategory",$jsonArray))
+                                                                @php $index = 0; @endphp
                                                                  @foreach($jsonArray['additionalCategory'] as $menuItemsCategoryBrand)
-                                                                <div class="tab-pane" id="pills-{{$menuItemsCategoryBrand['category_id']}}"
+                                                                <div class="tab-pane {{$index == 0 ? 'active' : ''}}" id="pills-{{$menuItemsCategoryBrand['category_id']}}"
                                                                     role="tabpanel" aria-labelledby="pills-{{$menuItemsCategoryBrand['category_id']}}-tab">
                                                                     <div class="brnadimgbxrow">
                                                                         @foreach($jsonArray['featuredBrands'] as $brand)
@@ -164,6 +168,7 @@
                                                                         @endforeach
                                                                     </div>
                                                                 </div>
+                                                                @php $index++; @endphp
                                                                 @endforeach
                                                                 @endif
                                                             </div>
@@ -843,6 +848,8 @@ function decreaseValue() {
             }
         });
     </script>
+<script src="assets/product-zoom/setup.js"></script>
+<script src="assets/product-zoom/foundation.min.js"></script>
 <script src="{{asset('assets/js/jquery.slim.min.js')}}"></script>
 <script src="{{asset('assets/js/popper.min.js')}}"></script>
 <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>

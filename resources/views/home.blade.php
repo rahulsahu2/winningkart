@@ -17,6 +17,7 @@
     $featuredBrandProducts = $jsonArray['featuredCategoryProducts'] ?? [];
     $topCategoriesProducts = $jsonArray['topCategoriesProducts'] ??[];
     $bestDiscountProducts = $jsonArray['bestDiscountProducts'] ??[];
+    $bestSellerBanners = $jsonArray['bestSellerBanners'] ?? [];
 ?>
 
 <!-- More Categories For You -->
@@ -111,15 +112,13 @@
                 <div class="boxesRow">
                     @php $count = 0; @endphp
                     @foreach($trproducts as $arr)
-                    @if($arr['ismain'] == 0)
-                    @php $count = $count +1; @endphp
                     <div class="boxesCol">
                         <img src="{{env('API_IMAGE_URL').$arr['image'] ?? ''}}" alt="{{$arr['title'] ?? ''}}">
                         <a href="{{$arr['link'] ?? ''}}">{{$arr['title'] ?? ''}}</a>
                     </div>
-                    @if($count == 3)
+                    @php $count = $count +1; @endphp
+                    @if($count == 4)
                     @break
-                    @endif
                     @endif
                     @endforeach
                 </div>
@@ -127,8 +126,10 @@
             <div class="col-lg-6">
                 <div class="row">
                     <div class="col-lg-6">
+                        @php $count = 0; @endphp
                         @foreach($trproducts as $arr)
-                        @if($arr['ismain'] == 1)
+                        @php $count = $count +1; @endphp
+                        @if($count == 5)
                         <div class="largeBanner">
                             <img src="{{env('API_IMAGE_URL').$arr['image'] ?? ''}}" alt="{{$arr['title'] ?? ''}}">
                             <a href="{{$arr['id'] ?? ''}}">{{$arr['title'] ?? ''}}</a>
@@ -141,18 +142,16 @@
                         <div class="boxesRow">
                             @php $count = 0; @endphp
                             @foreach($trproducts as $arr)
-                            @if($arr['ismain'] == 0)
                             @php $count = $count +1; @endphp
-                            @if($count > 3)
+                            @if($count > 5)
                             <div class="boxesCol w-100">
-                                <img src="{{env('API_IMAGE_URL').$arr[$arrCount]['image'] ?? ''}}"
-                                    alt="{{$arr[$arrCount]['title'] ?? ''}}">
-                                <a href="{{$arr[$arrCount]['link'] ?? ''}}">{{$arr[$arrCount]['title'] ?? ''}}</a>
+                                <img src="{{env('API_IMAGE_URL').$arr['image'] ?? ''}}"
+                                    alt="{{$arr['title'] ?? ''}}">
+                                <a href="{{$arr['link'] ?? ''}}">{{$arr['title'] ?? ''}}</a>
                             </div>
                             @endif
-                            @if($count == 3)
+                            @if($count == 7)
                             @break
-                            @endif
                             @endif
                             @endforeach
                         </div>
@@ -244,13 +243,13 @@
 <section>
     <div class="container-fluid">
         <h3 class="secTitle">{{$jsonArray['section_title'][6]['custom'] ?? ''}}</h3>
+        @foreach($bestSellerBanners as $banner)
         <div class="bannersCard">
-            <?php $bannersale =  $jsonArray['flashSale'] ?? []; ?>
-            <a href="/sale/{{$bannersale['id'] ?? ''}}">
-                <img src="{{env('API_IMAGE_URL').$bannersale['homepage_image'] ?? ''}}"
-                    alt="{{$bannersale['title'] ?? ''}}">
+            <a href="{{$banner['link']}}">
+                <img src="{{$env.$banner['image'] ?? ''}}" alt="{{$banner['title'] ?? ''}}">
             </a>
         </div>
+        @endforeach
     </div>
 </section>
 

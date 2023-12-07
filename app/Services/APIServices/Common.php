@@ -26,6 +26,17 @@ class Common
         }
     }
 
+    private function PostResult($url,$data){
+        try{
+            $request = $this->client->post($url,["body"=> $data]);
+            $resp = $request->send();
+            return $resp;
+        }
+        catch(Exception $ex){
+            return false;
+        }
+    }
+
     public function GetSetting(){
         return $this->GetResult(APIPaths::$baseUrl);
     }

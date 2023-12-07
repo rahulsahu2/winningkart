@@ -15,6 +15,22 @@ Class APIPaths{
 
     //basic pages end.
 
+    //auth api start
+
+    const REGISTER_USER = "store-register";
+    const SEND_OTP = "resend-register-code";
+    const VERIFY_OTP = "user-verification/_OTP";
+    const LOGIN = "store-login";
+    const LOGOUT = "user/logout?token=_TOKEN";
+    const FORGET_PASSWORD = "send-forget-password";
+    const UPDATE_PASSWORD = "user/update-password?token=_TOKEN";
+    const RESET_PASSWORD = "store-reset-password/_OTP";
+    const USER_DASBOARD = "user/dashboard?token=_TOKEN";
+    const USER_PROFILE = "user/my-profile?token=_TOKEN";
+
+    //auth api end
+
+
     //static pages
     const PRIVACY_POLICY = "privacy-policy";
     const TERMS_AND_CONDITIONS = "terms-and-conditions";

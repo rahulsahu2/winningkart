@@ -68,44 +68,4 @@ Route::controller(ProductController::class)->group(function () {
     Route::get('/product/{slug}', 'Product_details')->name("product");
 });
 
-//authentication
-// Route::prefix('auth')->namespace('App\\Http\\Controllers\\Auth')->group(function(){
-//     Route::get('/signin',[SignInController::class,'signin'])->name('signin');
-// }
-
 //Frontend Routes END ******************************************************
-
-
-
-
-
-//Admin Routes START ******************************************************
-
-Route::prefix('admin')->group(function () {
-    
-    Route::middleware('admin')->group(function(){
-        Route::get('dashboard',[DashboardController::class,'index'])->name('admin.dashboard');
-        Route::get('logout',[AdminController::class,'logout'])->name('admin.logout');
-        Route::match(['get', 'post'],'update-profile',[AdminController::class,'update'])->name('admin.profile.update');
-        Route::post('update-image',[AdminController::class,'updateImage'])->name('admin.profile.updateImage');
-        
-        Route::match(['get', 'post'],'create-vendor',[AdminController::class,'createVendor'])->name('admin.vendor.create');
-        
-        //BRANDS
-        Route::match(['get', 'post'],'brands/create',[BrandController::class,'create'])->name('admin.brands.create');
-        Route::get('brands',[BrandController::class,'index'])->name('admin.brands');
-        Route::get('brands/status/{id}',[BrandController::class,'updateStatus'])->name('admin.brands.updateStatus');
-        Route::get('brand/delete/{id}',[BrandController::class,'destroy'])->name('admin.brands.delete');
-        Route::get('brands-category',[BrandController::class,'indexCategory'])->name('admin.brands.catgory');
-        Route::match(['get', 'post'],'brands/category/create',[BrandController::class,'createCategory'])->name('admin.brands.category.create');
-        Route::get('brand/category/delete/{id}',[BrandController::class,'categoryDestroy'])->name('admin.brands.catgory.delete');
-        Route::match(['get', 'post'],'brand/category/show/{id}',[BrandController::class,'categoryShow'])->name('admin.brands.catgory.show');
-        
-    });
-    
-    
-    Route::match(['get', 'post'], 'login', [AdminController::class,'login'])->name('admin.login');
-});
-
-
-//Admin Routes END ******************************************************
