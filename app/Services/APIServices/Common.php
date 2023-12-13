@@ -3,6 +3,8 @@
 namespace App\Services\APIServices;
 
 use Exception;
+use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Psr7\Uri;
 use GuzzleHttp\Client;
 
 class Common
@@ -15,25 +17,46 @@ class Common
         APIPaths::$myShop = env("MY_SHOP");
     }
 
-    private function GetResult($url){
+    public function GetResult($url,$codeRequired = false,$isAuth = false){
         try{
-        $response = $this->client->get($url);
-        return $response->getBody()->getContents();
+            
+            $headers = $this->GetAccessToken();
+            $response = $isAuth ? $this->client->get($url,$headers) : $this->client->get($url);
+            $data = $response->getBody()->getContents();
+            return $codeRequired ? ["code" => $response->getStatusCode(), 'message' => $data] : $data;
         }
         catch(Exception $e)
         {
-            return false;
+            return [
+                'message'=> ['notification' => env('APP_DEBUG') ? $e->getMessage() : "Something went wrong."],
+                'code' => 500,
+            ];
         }
     }
 
-    private function PostResult($url,$data){
+    public function PostResult($url,$data){
         try{
-            $request = $this->client->post($url,["body"=> $data]);
-            $resp = $request->send();
-            return $resp;
+            $options = [
+                'multipart' => array_map(function ($key, $value) {
+                    return [
+                        'name' => $key,
+                        'contents' => $value,
+                    ];
+                }, array_keys($data), $data),
+            ];
+
+            $request = new Request('POST', $url);
+            $res = $this->client->sendAsync($request, $options)->wait();
+            $responseData = $res->getBody()->getContents();
+            $code = $res->getStatusCode();
+            $data = ["code" => $code,"message" => $responseData];
+            return $data;
         }
         catch(Exception $ex){
-            return false;
+            return [
+                'message'=> ['notification' => env('APP_DEBUG') ? $ex->getMessage() : "Something went wrong."],
+                'code' => 500,
+            ];
         }
     }
 
@@ -101,6 +124,28 @@ class Common
     public static function GetCommonHeader(){
         $c = new Client();
       return (new Common($c))->GetCommonSetting();
+    }
+
+    public static function GetSession(){
+        // Retrieving data from the session
+        $sessionData = session('token_details');
+
+        // Converting JSON string to object
+        $userObject = json_decode($sessionData);
+        return $userObject;
+    }
+
+    public function GetAccessToken(){
+        $sessionData = session('token_details');
+        $headers = ['Authorization' => ''];
+
+        if($sessionData){
+            $session = json_decode($sessionData);
+            $headers = [
+                'Authorization' => $session ? $session->notification->original->access_token : ''
+            ];
+        }
+        return $headers;
     }
 
 }

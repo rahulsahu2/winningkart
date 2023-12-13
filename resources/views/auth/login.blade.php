@@ -8,7 +8,7 @@
             <div class="col-md-5">
                 <div class="register-form description-box">
                    
-                    <form method="post" action="{{route('user.sverifymail')}}">
+                    <form method="post" action="{{route('user.getLoginOtp')}}">
                         @csrf
                         <h3>LOGIN</h3>
                         <div class="form-group mt-3">
@@ -19,13 +19,6 @@
                             <button type="submit" class="loginSubmitBtn ">Login</button>
                         </div>
                     <form>
-                    <p class="login-form-footer mt-3">
-                        <!-- <a href="#" class="woocommerce-LostPassword lost_password">Lost your password?</a> -->
-                        <!-- <label class="">
-                               <input class="woocommerce-form__input woocommerce-form__input-checkbox" name="rememberme" type="checkbox" value="forever" title="Remember me" aria-label="Remember me">
-                               <span>Remember me</span>
-                            </label> -->
-                    </p>
                     <p class="title wd-login-divider "><span>Or login with</span></p>
 
                     <div class="wd-social-login">

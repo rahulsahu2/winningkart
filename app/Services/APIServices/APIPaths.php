@@ -21,6 +21,7 @@ Class APIPaths{
     const SEND_OTP = "resend-register-code";
     const VERIFY_OTP = "user-verification/_OTP";
     const LOGIN = "store-login";
+    const SEND_LOGIN_OTP = 'store-login-with-otp';
     const LOGOUT = "user/logout?token=_TOKEN";
     const FORGET_PASSWORD = "send-forget-password";
     const UPDATE_PASSWORD = "user/update-password?token=_TOKEN";
@@ -30,6 +31,16 @@ Class APIPaths{
 
     //auth api end
 
+    //cart start
+    const CART = "cart";
+    const ADD_TO_CART = "add-to-cart";
+    const CLEAR_CART = "cart-clear";
+    const CART_ITEM_REMOVE = "cart-item-remove/{id}";
+    const INCREMENT_CART = "cart-item-increment/{id}";
+    const DECREMENT_CART = "cart-item-decrement/{id}";
+
+
+    //cart end
 
     //static pages
     const PRIVACY_POLICY = "privacy-policy";

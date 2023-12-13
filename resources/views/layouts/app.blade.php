@@ -4,6 +4,11 @@
     $path = env('API_IMAGE_URL');
     $root = env('API_URL');
 
+    $session = \App\Services\APIServices\Common::GetSession();
+    $user = null;
+    if($session){
+        $user = $session->notification->original->user;
+    }
     $jsonArray =  json_decode(\App\Services\APIServices\Common::GetHeader(), true);
     $mydata = json_decode(\App\Services\APIServices\Common::GetShopHeader(), true);
     $csetting = json_decode(\App\Services\APIServices\Common::GetCommonHeader(), true);
@@ -226,19 +231,18 @@
                                         <i class="bi bi-search"></i>
                                         <input type="text" placeholder="Search on Winning Kart" class="form-control">
 
-                                        @if (Route::has('login'))
-                                            @auth
+                                        @if ($session)
                                                 <div class="cart">
                                                     <div class="userLoginhead">
                                                         <div class="profileLabel">
                                                             <i class="bi bi-person"></i>
-                                                            <span>{{auth()->user()->name}}</span>
+                                                            <span>{{$user->name}}</span>
                                                         </div>
                                                         <div class="userLogindropdown">
-                                                            <a href="{{route('user.profile')}}"><i class="bi bi-person"></i> Profile</a>
+                                                            <a href="{{Route('user.profile')}}"><i class="bi bi-person"></i> Profile</a>
                                                             <a href="my-orders.html"><i class="bi bi-box-seam"></i> Orders</a>
                                                             <a href="wishlist.html"><i class="bi bi-heart"></i> Wishlist</a>
-                                                            <a href="{{route('user.logout')}}"><i class="bi bi-box-arrow-right"></i> Logout</a>
+                                                            <a href="{{Route('user.logout')}}"><i class="bi bi-box-arrow-right"></i> Logout</a>
                                                         </div>
                                                     </div>
                                                     <button class="btn cartBtn">
@@ -249,16 +253,11 @@
                                             @else
                                                 <a href="{{ route('login') }}"><button type="button" class="btn signInBtn">Sign
                                                         in</button></a>
-                                                        <div class="cart" title="Login to see your cart">
-                                                            <button class="btn cartBtn">
-                                                                <i class="bi bi-bag"></i>
-                                                            </button>
-                                                        </div>
-
-                                                <!-- @if (Route::has('register'))
-                                                                <a href="{{ route('register') }}"><button type="button" class="btn signInBtn">Register</button></a>
-                                                            @endif -->
-                                            @endauth
+                                                <div class="cart" title="Login to see your cart">
+                                                    <button class="btn cartBtn">
+                                                        <i class="bi bi-bag"></i>
+                                                    </button>
+                                                </div>
                                         @endif
 
                                         <div class="searchSuggest">
@@ -729,12 +728,12 @@
 
         @if(Session::has('danger'))
             <div class="alert alert-danger" role="alert">
-                {{Session::get('danger')}}
+                {{is_array(Session::get('danger')) ? implode(Session::get('danger')) : Session::get('danger')}}
             </div>
         @endif
         @if(Session::has('success'))
             <div class="alert alert-success" role="alert">
-                {{Session::get('success')}}
+                {{is_array(Session::get('success')) ? implode(Session::get('success')) : Session::get('success')}}
             </div>
         @endif
 
@@ -743,7 +742,127 @@
 
         @yield('content')
 
+<!-- Fixcart -->
+<section class="fixedCart">
+    <div class="row mr-0 justify-content-end">
+        <div class="col-lg-4 px-0">
+            <div class="fixedCartMain position-relative">
+                <div class="fixedCartInner ">
+                    <div class="cartCalcmainbx">
+                        <div class="fixCartHead">
+                            <h2>Shopping Cart</h2>
+                            <a class="fxCloseCart pointer text-decoration-none text-dark"><i class="bi bi-x-lg"></i></a>
+                        </div>
+                        <div class="fixCartproductsmain">
+                            <div class="fixCartproductslist">
+                                <div class="fixCartproductscard">
+                                    <div class="fixCartimgcol">
+                                        <div class="fixCartimg">
+                                            <img src="{{asset('assets/images/product.avif')}}" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="fixCartinfo">
+                                        <a href="#!">SP Luxe Oil Keratin Restore Mask</a>
+                                        <div class="fixCartqty">
+                                            <span>Qty: </span>
+                                            <div class="cartQtybx">
+                                                <button class="Qtybtn"><i class="bi bi-dash-lg"></i></button>
+                                                <input type="text" value="1">
+                                                <button class="Qtybtn"><i class="bi bi-plus-lg"></i></button>
+                                            </div>
+                                        </div>
+                                        <span class="fixCartprice">₹1663</span>
+                                        <button class="fixCartDelete"><i class="bi bi-trash"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 
+                        <div class="fixCartButton">
+                            <div class="fxCartCoupanmain">
+                                <div class="fxCartCoupaninner">
+                                    <!-- <input type="checkbox" name="coupanApply" id="coupanApply" class="d-none"> -->
+                                    <label for="coupanApply" class="ApplycoupanBtn"><i class="bi bi-percent"></i> Apply
+                                        Coupan</label>
+                                </div>
+                            </div>
+                            <div class="fxCartCalcmain">
+                                <div class="fxCartCalcinner">
+                                    <h3>Price Details</h3>
+                                    <p>
+                                        <span>Bag MRP (3 items)</span>
+                                        <span>₹3060</span>
+                                    </p>
+                                    <p>
+                                        <span>Bag Discount</span>
+                                        <span>₹349</span>
+                                    </p>
+                                    <p>
+                                        <span>Shipping</span>
+                                        <span>Free</span>
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="fxproductcalc">
+                                <h3>Subtotal</h3>
+                                <span>₹2000</span>
+                            </div>
+                            <!-- <a href="#!" class="cartView">VIEW CART</a> -->
+                            <a href="cart.html" class="cartProceed">CHECKOUT</a>
+                        </div>
+                    </div>
+
+                    <!-- Apply Coupan Box -->
+                    <div class="applyCoupanMain">
+                        <div class="applyCoupanInner">
+                            <div class="fixCartHead">
+                                <h2>Apply Coupan</h2>
+                                <a class="fxCloseapplycoupan pointer text-decoration-none text-dark"><i
+                                        class="bi bi-x-lg"></i></a>
+                            </div>
+                            <div class="fxCartCoupanmain">
+                                <div class="fxCartCoupaninner">
+                                    <div class="coupanBox">
+                                        <div class="position-relative">
+                                            <input type="text" placeholder="Apply Coupan" class="form-control">
+                                            <button class="btn coupanApplyBtn">Apply</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="coupanListMain">
+                                <div class="noCoupanFound">
+                                    <div class="noCoupanFoundinner">
+                                        <img src="{{asset('assets/images/promo-code.png')}}" alt="">
+                                        <p>You seem to have no Coupons. Please try again after some time.</p>
+                                    </div>
+                                </div>
+                                <div class="coupanListinner">
+                                    <div class="coupanListCard">
+                                        <div class="coupanicon">
+                                            <i class="bi bi-percent"></i>
+                                        </div>
+                                        <div class="couapnDetails">
+                                            <h3>COUPANCODE</h3>
+                                            <P>Lorem ipsum dolor sit amet consectetur.</P>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="fixCartButton">
+                                <!-- <a href="#!" class="cartView">VIEW CART</a> -->
+                                <button type="button" class="cartProceed fxCloseapplycoupan">PROCEED</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 
         <footer>

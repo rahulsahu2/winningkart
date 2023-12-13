@@ -7,19 +7,24 @@ use App\Services\APIServices\Common;
 class AuthCommon extends Common
 {
     public function Register($data){
-        return $this->client->PostResult(APIPaths::$baseUrl.APIPaths::REGISTER_USER,$data);
+        return $this->PostResult(APIPaths::$baseUrl.APIPaths::REGISTER_USER,$data);
     }
 
-    public function GetRegisterOTP(){
+    public function GetRegisterOTP($data){
         $url = APIPaths::$baseUrl.APIPaths::SEND_OTP;
-        return $this->GetResult($url);
+        return $this->PostResult($url,$data);
     }
 
     public function VerifyOTP($otp){
-        return $this->GetResult(APIPaths::$baseUrl.APIPaths::VERIFY_OTP);
+        $endpopint = str_replace("_OTP",$otp,APIPaths::VERIFY_OTP);
+        return $this->GetResult(APIPaths::$baseUrl.$endpopint,true);
     }
 
-    public function Login($data){
+    public function GetLoginOtp($data){
+        return $this->PostResult(APIPaths::$baseUrl.APIPaths::SEND_LOGIN_OTP,$data);
+    }
+
+    public function GetLogin($data){
         return $this->PostResult(APIPaths::$baseUrl.APIPaths::LOGIN,$data);
     }
 

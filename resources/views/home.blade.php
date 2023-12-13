@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <?php 
-    $env = env('API_IMAGE_URL');
+    $env = env("API_IMAGE_URL");
     $jsonArray = json_decode($setting, true);
     $commonsetting = json_decode($commonsetting, true);
     $GetTopRatedProducts = json_decode($GetTopRatedProducts, true);
@@ -34,7 +34,7 @@
                         <div class="moreCateCard">
                             <div class="moreCateCardImg">
                                 <a href="#!">
-                                    <img src="{{env('API_IMAGE_URL').$value['image']}}" alt="{{$value['slug']}}">
+                                    <img src="{{$env.$value['image']}}" alt="{{$value['slug']}}">
                                 </a>
                             </div>
                             <h3>{{$value['name']}}</h3>
@@ -60,10 +60,10 @@
                     @foreach($jsonArray['sliders'] as $slider)
                     @if($slider['status'] == 1)
                     <div class="swiper-slide beautySliderslide">
-                        <img src="{{env('API_IMAGE_URL').$slider['image']}}" alt="{{$slider['product_slug']}}">
+                        <img src="{{$env.$slider['image']}}" alt="{{$slider['product_slug']}}">
                         <div class="beautySlideTitle">
                             <h3>{{$slider['title_two']}}</h3>
-                            <a href="/product/{{$slider['serial']}}"><i class="bi bi-chevron-right"></i></a>
+                            <a href="/product/{{$slider['product_slug']}}"><i class="bi bi-chevron-right"></i></a>
                         </div>
                     </div>
                     @endif
@@ -113,7 +113,7 @@
                     @php $count = 0; @endphp
                     @foreach($trproducts as $arr)
                     <div class="boxesCol">
-                        <img src="{{env('API_IMAGE_URL').$arr['image'] ?? ''}}" alt="{{$arr['title'] ?? ''}}">
+                        <img src="{{$env.$arr['image'] ?? ''}}" alt="{{$arr['title'] ?? ''}}">
                         <a href="{{$arr['link'] ?? ''}}">{{$arr['title'] ?? ''}}</a>
                     </div>
                     @php $count = $count +1; @endphp
@@ -131,7 +131,7 @@
                         @php $count = $count +1; @endphp
                         @if($count == 5)
                         <div class="largeBanner">
-                            <img src="{{env('API_IMAGE_URL').$arr['image'] ?? ''}}" alt="{{$arr['title'] ?? ''}}">
+                            <img src="{{$env.$arr['image'] ?? ''}}" alt="{{$arr['title'] ?? ''}}">
                             <a href="{{$arr['id'] ?? ''}}">{{$arr['title'] ?? ''}}</a>
                         </div>
                         @break
@@ -145,7 +145,7 @@
                             @php $count = $count +1; @endphp
                             @if($count > 5)
                             <div class="boxesCol w-100">
-                                <img src="{{env('API_IMAGE_URL').$arr['image'] ?? ''}}"
+                                <img src="{{$env.$arr['image'] ?? ''}}"
                                     alt="{{$arr['title'] ?? ''}}">
                                 <a href="{{$arr['link'] ?? ''}}">{{$arr['title'] ?? ''}}</a>
                             </div>
@@ -172,7 +172,7 @@
                 <div class="brandsCard">
                     <a href="{{$flashsale['link']}}">
                         <div class="brandsCardimg">
-                            <img src="{{env('API_IMAGE_URL').$flashsale['image']}}" alt="{{$flashsale['title']}}">
+                            <img src="{{$env.$flashsale['image']}}" alt="{{$flashsale['title']}}">
                         </div>
                         <div class="brandsCardinfo">
                             <h3>{{$flashsale['title']}}</h3>
@@ -196,16 +196,16 @@
             <div class="col-lg-6 col-md-6">
                 <div class="bannersCard">
                     <a href="/products/{{$banner['id'] ?? ''}}">
-                        <img src="{{env('API_IMAGE_URL').$banner['image'] ?? ''}}"
+                        <img src="{{$env.$banner['image'] ?? ''}}"
                             alt="{{$banner['product_slug'] ?? ''}}">
                     </a>
                 </div>
             </div>
-            <?php $banner = $jsonArray['sliderBannerTwo'] ?? [] ?>
+            <?php $banner = $jsonArray['sliderBannerTwo'] ?? []; ?>
             <div class="col-lg-6 col-md-6">
                 <div class="bannersCard">
                     <a href="/products/{{$banner['id'] ?? ''}}">
-                        <img src="{{env('API_IMAGE_URL').$banner['image'] ?? ''}}"
+                        <img src="{{$env.$banner['image'] ?? ''}}"
                             alt="{{$banner['product_slug'] ?? ''}}">
                     </a>
                 </div>
@@ -226,7 +226,7 @@
                                 <div class="swiper-slide">
                                     <div class="onlyAtWinningcard">
                                         <a href="/produts/{{$fproduct['id']}}">
-                                        <img src="{{env('API_IMAGE_URL').$fproduct['thumb_image']}}" alt="{{$fproduct['slug']}}">
+                                        <img src="{{$env.$fproduct['thumb_image']}}" alt="{{$fproduct['slug']}}">
                                         </a>
                                     </div>
                                 </div>
@@ -391,128 +391,6 @@
                 </div>
                 <div class="swiper-button-next custNavbtn"></div>
                 <div class="swiper-button-prev custNavbtn"></div>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- Fixcart -->
-<section class="fixedCart">
-    <div class="row mr-0 justify-content-end">
-        <div class="col-lg-4 px-0">
-            <div class="fixedCartMain position-relative">
-                <div class="fixedCartInner ">
-                    <div class="cartCalcmainbx">
-                        <div class="fixCartHead">
-                            <h2>Shopping Cart</h2>
-                            <a class="fxCloseCart pointer text-decoration-none text-dark"><i class="bi bi-x-lg"></i></a>
-                        </div>
-                        <div class="fixCartproductsmain">
-                            <div class="fixCartproductslist">
-                                <div class="fixCartproductscard">
-                                    <div class="fixCartimgcol">
-                                        <div class="fixCartimg">
-                                            <img src="{{asset('assets/images/product.avif')}}" alt="">
-                                        </div>
-                                    </div>
-                                    <div class="fixCartinfo">
-                                        <a href="#!">SP Luxe Oil Keratin Restore Mask</a>
-                                        <div class="fixCartqty">
-                                            <span>Qty: </span>
-                                            <div class="cartQtybx">
-                                                <button class="Qtybtn"><i class="bi bi-dash-lg"></i></button>
-                                                <input type="text" value="1">
-                                                <button class="Qtybtn"><i class="bi bi-plus-lg"></i></button>
-                                            </div>
-                                        </div>
-                                        <span class="fixCartprice">₹1663</span>
-                                        <button class="fixCartDelete"><i class="bi bi-trash"></i></button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="fixCartButton">
-                            <div class="fxCartCoupanmain">
-                                <div class="fxCartCoupaninner">
-                                    <!-- <input type="checkbox" name="coupanApply" id="coupanApply" class="d-none"> -->
-                                    <label for="coupanApply" class="ApplycoupanBtn"><i class="bi bi-percent"></i> Apply
-                                        Coupan</label>
-                                </div>
-                            </div>
-                            <div class="fxCartCalcmain">
-                                <div class="fxCartCalcinner">
-                                    <h3>Price Details</h3>
-                                    <p>
-                                        <span>Bag MRP (3 items)</span>
-                                        <span>₹3060</span>
-                                    </p>
-                                    <p>
-                                        <span>Bag Discount</span>
-                                        <span>₹349</span>
-                                    </p>
-                                    <p>
-                                        <span>Shipping</span>
-                                        <span>Free</span>
-                                    </p>
-                                </div>
-                            </div>
-
-                            <div class="fxproductcalc">
-                                <h3>Subtotal</h3>
-                                <span>₹2000</span>
-                            </div>
-                            <!-- <a href="#!" class="cartView">VIEW CART</a> -->
-                            <a href="cart.html" class="cartProceed">CHECKOUT</a>
-                        </div>
-                    </div>
-
-                    <!-- Apply Coupan Box -->
-                    <div class="applyCoupanMain">
-                        <div class="applyCoupanInner">
-                            <div class="fixCartHead">
-                                <h2>Apply Coupan</h2>
-                                <a class="fxCloseapplycoupan pointer text-decoration-none text-dark"><i
-                                        class="bi bi-x-lg"></i></a>
-                            </div>
-                            <div class="fxCartCoupanmain">
-                                <div class="fxCartCoupaninner">
-                                    <div class="coupanBox">
-                                        <div class="position-relative">
-                                            <input type="text" placeholder="Apply Coupan" class="form-control">
-                                            <button class="btn coupanApplyBtn">Apply</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="coupanListMain">
-                                <div class="noCoupanFound">
-                                    <div class="noCoupanFoundinner">
-                                        <img src="{{asset('assets/images/promo-code.png')}}" alt="">
-                                        <p>You seem to have no Coupons. Please try again after some time.</p>
-                                    </div>
-                                </div>
-                                <div class="coupanListinner">
-                                    <div class="coupanListCard">
-                                        <div class="coupanicon">
-                                            <i class="bi bi-percent"></i>
-                                        </div>
-                                        <div class="couapnDetails">
-                                            <h3>COUPANCODE</h3>
-                                            <P>Lorem ipsum dolor sit amet consectetur.</P>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="fixCartButton">
-                                <!-- <a href="#!" class="cartView">VIEW CART</a> -->
-                                <button type="button" class="cartProceed fxCloseapplycoupan">PROCEED</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

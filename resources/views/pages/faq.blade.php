@@ -17,7 +17,7 @@
                         <div class="faqOptionBox">
                             <a href="{{route('FaqDetail',$slug)}}">
                             <div class="faqIcon">
-                                <img src="assets/images/icons/{{$slug}}.png" alt="{{$id['category'] ?? ''}}">  
+                                <img src="{{$env.'/uploads/icons'.$slug}}.png" alt="{{$id['category'] ?? ''}}">  
                             </div>
                             <h3>{{$id['category'] ?? ''}}</h3>
                             </a>
