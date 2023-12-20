@@ -61,6 +61,11 @@ Class APIPaths{
     const PRODUCTS = 'product/';
     //products-end
 
+    //brands
+    const BRAND_DETAILS = 'brand-details/';
+
+    //brands end
+
     //blog-section start
 
     const BLOG="blog?page=";

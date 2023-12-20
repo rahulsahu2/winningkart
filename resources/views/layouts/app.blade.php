@@ -131,7 +131,7 @@
                                                                 <h4>#</h4>
                                                                 @if($jsonArray && array_key_exists("brands",$jsonArray))
                                                                 @foreach($jsonArray['brands'] as $arr)
-                                                                <a href="{{route('brand.show',['id' => $arr['id']])}}">{{$arr['name']}}</a>
+                                                                <a href="{{route('brand-details',['slug' => $arr['slug']])}}">{{$arr['name']}}</a>
                                                                 @endforeach
                                                                 @endif
                                                             </div>
@@ -165,7 +165,7 @@
                                                                         @foreach($jsonArray['featuredBrands'] as $brand)
                                                                             @if($brand['category_id'] == $menuItemsCategoryBrand['category_id'])
                                                                             <div class="brnadimgbxcol">
-                                                                                <a href="{{route('brand.show',['id' => ($brand['brand_id'] ?? '')])}}">
+                                                                                <a href="{{route('brands',['slug' => $brand['brands']['slug']])}}">
                                                                                 <img src="{{env('API_IMAGE_URL').($brand['brands']['logo'] ?? '')}}" alt="{{$brand['brands']['slug'] ?? ''}}">
                                                                                 </a>
                                                                             </div>
@@ -218,7 +218,7 @@
                                             </div>
                                         </li>
                                         <li><a href="luxe-range.html">Luxe Range</a></li>
-                                        <li><a href="shop-all.html">Shop All Products</a></li>
+                                        <li><a href="{{Route('products')}}">Shop All Products</a></li>
                                         <li><a href="combos.html">Combos</a></li>
                                     </ul>
                                 </div>

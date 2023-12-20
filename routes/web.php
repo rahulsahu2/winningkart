@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
@@ -43,7 +44,10 @@ Route::controller(UserController::class)->group(function () {
 
 
 //error pages
-Route::get('/404',[ErrorController::class,'Error404'])->name('ContactUs');
+Route::controller(ErrorController::class)->group(function () {
+    Route::get('/404','Error404')->name('error.404');
+});
+
 
 Route::get('/blogs',[BlogController::class,'Blogs'])->name('Blogs');
 Route::get('/blog/{slug}',[BlogController::class,'Blog'])->name('Blog');
@@ -53,8 +57,6 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('brand/{id}',[App\Http\Controllers\BrandController::class,'show'])->name('brand.show');
-
 Route::controller(CategoryController::class)->group(function () {
     Route::get('/category/{id}', 'category')->name('category');
 });
@@ -62,6 +64,11 @@ Route::controller(CategoryController::class)->group(function () {
 Route::controller(ProductController::class)->group(function () {
     Route::get('/products', 'products')->name("products");
     Route::get('/product/{slug}', 'Product_details')->name("product");
+});
+
+Route::controller(BrandController::class)->group(function () {
+    Route::get('/brands', 'index')->name("brands");
+    Route::get('/brands/{slug}', 'index')->name("brand-details");
 });
 
 //Frontend Routes END ******************************************************

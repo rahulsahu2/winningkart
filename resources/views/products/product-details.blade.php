@@ -8,6 +8,8 @@ $product = $data['product'] ?? [];
 $category = $data['product']['category'] ?? [];
 $varinats = $data['product']['active_variants'] ?? [];
 $gallery = $data["gallery"] ??[];
+$productDescription = $data['productDescription'] ?? [];
+$productIngredient = $data['productIngredient'] ?? [];
 
 ?>
 <div class="container">
@@ -43,14 +45,15 @@ $gallery = $data["gallery"] ??[];
             <div class="col-md-6">
                 <div class="productDtlsBox">
                     <h4 class="productTitle">{{$product['name']}}</h4>
-
                     <div class="prodcutReviewBx">
+                        @if($product['averageRating'] > 0)
                         <span class="TotalRatings">
                             {{$product['averageRating']}} <i class="bi bi-star-fill"></i>
                         </span>
                         <span class="Totalrevies pointer">
                             <a href="#reviewTab">{{count($product['avg_review'])}} Reviews</a>
                         </span>
+                        @endif
                         <span class="SubmitReveiw addreviewBtn pointer">
                             Write a Reviews
                         </span>
@@ -121,98 +124,78 @@ $gallery = $data["gallery"] ??[];
                         </div>
                         <div class="col-lg-6 my-auto">
                             <div class="howtouseInfo">
-                                <h3>How To Use</h3>
-                                <ul>
-                                    <li>Gently massage into hair ensuring that entire scalp is covered.</li>
-                                    <li>The treatment works as a natural conditioner if left on for at least 20 minutes.
-                                    </li>
-                                    <li>Cleanse post-treatment with a mild shampoo and warm water.</li>
-                                    <li>May also be left on overnight if desired.</li>
-                                </ul>
                             </div>
                         </div>
                     </div>
                 </div>
                 @endif
             </div>
-            <!-- <div class="col-lg-12">
+            @if(!empty($productIngredient))
+            <div class="col-lg-12">
                 <div class="description-box">
                     <h3>Ingredients</h3>
                     <div class="moreCatemain">
                         <div class="swiper moreCatemainSlider">
                             <div class="swiper-wrapper">
+                                @foreach($productIngredient as $pi)
                                 <div class="swiper-slide">
                                     <div class="moreCateCard">
                                         <div class="moreCateCardImg">
-                                            <a href="#!">
-                                                <img src="assets/images/categoryimage.avif" alt="">
+                                            <a>
+                                                <img src="{{$env.$pi['image']}}" alt="{{$pi['title']}}">
                                             </a>
                                         </div>
-                                        <h3>Category Title</h3>
+                                        <h3>{{$pi['title']}}</h3>
                                     </div>
                                 </div>
+                                @endforeach
                             </div>
                             <div class="swiper-button-next custNavbtn"></div>
                             <div class="swiper-button-prev custNavbtn"></div>
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
+            @endif
 
+            @if(!empty($productDescription))
             <div class="col-lg-12">
                 <div class="productBenefitbx">
-                    <h3>Bringadi Oil Benefits</h3>
+                    <h3>{{$product['name']}} Benefits</h3>
+                    @php $count = 0; @endphp
+                    @foreach($productDescription as $pd)
                     <div class="row mb-3">
+                        @if($count % 2 == 0)
                         <div class="col-lg-5 pr-0">
                             <div class="productBenefitimg">
-                                <img src="https://static.kamaayurveda.in/pub/media/Pwa_benefits/nbring_1.jpg" alt="">
+                                <img src="{{$env.$pd['image']}}" alt="{{$pd['title']}}">
                             </div>
                         </div>
                         <div class="col-lg-7 pl-0">
                             <div class="productBenefitinfo">
-                                <h3>Hair fall treatment oil proven to reduce hairfall*</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae veritatis dolorem
-                                    atque exercitationem repudiandae.
-                                    Voluptates, enim. Illo libero officiis id quas, hic, nobis totam corporis
-                                    perferendis ipsa dolorum vero placeat.</p>
+                                <h3>{{$pd['title']}}</h3>
+                                <p>{{$pd['description']}}</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-lg-7 pr-0">
-                            <div class="productBenefitinfo">
-                                <h3>Hair fall treatment oil proven to reduce hairfall*</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae veritatis dolorem
-                                    atque exercitationem repudiandae.
-                                    Voluptates, enim. Illo libero officiis id quas, hic, nobis totam corporis
-                                    perferendis ipsa dolorum vero placeat.</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-5 pl-0">
-                            <div class="productBenefitimg">
-                                <img src="https://static.kamaayurveda.in/pub/media/Pwa_benefits/nbring_1.jpg" alt="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <div class="col-lg-5 pr-0">
-                            <div class="productBenefitimg">
-                                <img src="https://static.kamaayurveda.in/pub/media/Pwa_benefits/nbring_1.jpg" alt="">
-                            </div>
-                        </div>
+                        @else
                         <div class="col-lg-7 pl-0">
                             <div class="productBenefitinfo">
-                                <h3>Hair fall treatment oil proven to reduce hairfall*</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae veritatis dolorem
-                                    atque exercitationem repudiandae.
-                                    Voluptates, enim. Illo libero officiis id quas, hic, nobis totam corporis
-                                    perferendis ipsa dolorum vero placeat.</p>
+                                <h3>{{$pd['title']}}</h3>
+                                <p>{{$pd['description']}}</p>
                             </div>
                         </div>
+                        <div class="col-lg-5 pr-0">
+                            <div class="productBenefitimg">
+                                <img src="{{$env.$pd['image']}}" alt="{{$pd['title']}}">
+                            </div>
+                        </div>
+                        @endif
                     </div>
+                    @php $count++; @endphp
+                    @endforeach
                 </div>
             </div>
-
+            @endif
 
             <div class="col-md-12">
                 <div class="description-box mt-4 mb-3" id="reviewTab">
