@@ -58,7 +58,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::controller(CategoryController::class)->group(function () {
-    Route::get('/category/{id}', 'index')->name('category');
+    Route::get('/category/{slug}', 'index')->name('category');
 });
 
 Route::controller(ProductController::class)->group(function () {

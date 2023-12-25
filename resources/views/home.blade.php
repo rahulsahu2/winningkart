@@ -33,7 +33,7 @@
                     <div class="swiper-slide">
                         <div class="moreCateCard">
                             <div class="moreCateCardImg">
-                                <a href="#!">
+                                <a href="{{Route('category',['slug'=> $value['slug']])}}">
                                     <img src="{{$env.$value['image']}}" alt="{{$value['slug']}}">
                                 </a>
                             </div>
