@@ -34,9 +34,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" href="{{$logo}}">
-    <link rel="apple-touch-icon" href="{{$logo}}">
-    <link rel="image_src" href="{{$logo}}"> 
+    <!--<link rel="shortcut icon" href="{{$logo}}">-->
+    <!--<link rel="apple-touch-icon" href="{{$logo}}">-->
+    <!--<link rel="image_src" href="{{$logo}}"> -->
+    <link rel="icon" type="image/x-icon" href="{{$path.$csetting['setting']['logo']}}">
     <link rel="search" type="application/opensearchdescription+xml" title="WinningKart" href="/opensearch.xml">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1.0">
     <meta property="og:type" content= "website" />
@@ -52,7 +53,9 @@
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/swiper-bundle.min.css')}}">
-    <link rel="stylesheet" href="assets/product-zoom/xzoom.css">
+    <link rel="stylesheet" href="{{asset('assets/css/xzoom.css')}}">
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/css/swiper.css">-->
+    <!--<link rel="stylesheet" href="assets/product-zoom/xzoom.css">-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <script>
         document.querySelector('#meta-location').setAttribute('content', location.href);
@@ -165,7 +168,7 @@
                                                                         @foreach($jsonArray['featuredBrands'] as $brand)
                                                                             @if($brand['category_id'] == $menuItemsCategoryBrand['category_id'])
                                                                             <div class="brnadimgbxcol">
-                                                                                <a href="{{route('brands',['slug' => $brand['brands']['slug']])}}">
+                                                                                <a href="{{route('brand-details',['slug' => $brand['brands']['slug']])}}">
                                                                                 <img src="{{env('API_IMAGE_URL').($brand['brands']['logo'] ?? '')}}" alt="{{$brand['brands']['slug'] ?? ''}}">
                                                                                 </a>
                                                                             </div>
@@ -279,452 +282,7 @@
                     </div>
                 </div>
             </div>
-
-        @if(Route::currentRouteName() === 'home')
-    
-            <!-- <div class="bottomHeader">
-                <div class="container">
-                    <div class="bottomHeaderinner">
-                        <ul>
-                            <li class="navLink">
-                                <a href="#!">Makeup</a>
-                                <div class="subMenu">
-                                    <div class="row subMenuRow">
-                                        <div class="col-lg-2 px-2">
-                                            <div class="subMenuLinks">
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 px-2">
-                                            <div class="subMenuLinks" style="background-color: #f7f7f7">
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 px-2">
-                                            <div class="subMenuLinks">
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 px-2">
-                                            <div class="subMenuLinks" style="background-color: #f7f7f7">
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 px-2">
-                                            <div class="subMenuLinks">
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 px-2">
-                                            <div class="subMenuLinks" style="background-color: #f7f7f7">
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="navLink">
-                                <a href="#!">Hair</a>
-                                <div class="subMenu">
-                                    <div class="row subMenuRow">
-                                        <div class="col-lg-2 px-2">
-                                            <div class="subMenuLinks">
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 px-2">
-                                            <div class="subMenuLinks" style="background-color: #f7f7f7">
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 px-2">
-                                            <div class="subMenuLinks">
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 px-2">
-                                            <div class="subMenuLinks" style="background-color: #f7f7f7">
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 px-2">
-                                            <div class="subMenuLinks">
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 px-2">
-                                            <div class="subMenuLinks" style="background-color: #f7f7f7">
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="navLink">
-                                <a href="#!">Skin</a>
-                                <div class="subMenu">
-                                    <div class="row subMenuRow">
-                                        <div class="col-lg-2 px-2">
-                                            <div class="subMenuLinks">
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 px-2">
-                                            <div class="subMenuLinks" style="background-color: #f7f7f7">
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 px-2">
-                                            <div class="subMenuLinks">
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 px-2">
-                                            <div class="subMenuLinks" style="background-color: #f7f7f7">
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 px-2">
-                                            <div class="subMenuLinks">
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 px-2">
-                                            <div class="subMenuLinks" style="background-color: #f7f7f7">
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="navLink">
-                                <a href="#!">Appliances</a>
-                                <div class="subMenu">
-                                    <div class="row subMenuRow">
-                                        <div class="col-lg-2 px-2">
-                                            <div class="subMenuLinks">
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 px-2">
-                                            <div class="subMenuLinks" style="background-color: #f7f7f7">
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 px-2">
-                                            <div class="subMenuLinks">
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 px-2">
-                                            <div class="subMenuLinks" style="background-color: #f7f7f7">
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 px-2">
-                                            <div class="subMenuLinks">
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-2 px-2">
-                                            <div class="subMenuLinks" style="background-color: #f7f7f7">
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                                <div class="subMenuLinksinner">
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                    <a href="#!">Child Menu</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="navLink">
-                                <a href="#!">Bath & Body</a>
-                            </li>
-                            <li class="navLink">
-                                <a href="#!">Natural</a>
-                            </li>
-                            <li class="navLink">
-                                <a href="#!">Mom & Baby</a>
-                            </li>
-                            <li class="navLink">
-                                <a href="#!">Health & Wellness</a>
-                            </li>
-                            <li class="navLink">
-                                <a href="#!">Men</a>
-                            </li>
-                            <li class="navLink">
-                                <a href="#!">Fragrance</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div> -->
-
-        @endif
-
         </header>
-
 
         @if(Session::has('danger'))
             <div class="alert alert-danger" role="alert">
@@ -967,15 +525,20 @@ function decreaseValue() {
             }
         });
     </script>
+    
 <script src="assets/product-zoom/setup.js"></script>
 <script src="assets/product-zoom/foundation.min.js"></script>
-<script src="{{asset('assets/js/jquery.slim.min.js')}}"></script>
+<!--<script src="{{asset('assets/js/jquery.slim.min.js')}}"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="{{asset('assets/js/popper.min.js')}}"></script>
 <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 <!-- Swiper JS -->
+
 <script src="{{asset('assets/js/swiper-bundle.min.js')}}"></script>
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/js/swiper.jquery.js"></script>-->
 <script src="{{asset('assets/js/main.js')}}"></script>
 <script src="{{asset('assets/js/custom.js')}}"></script>
+<script src="{{asset('assets/js/xzoom.min.js')}}"></script>
 
 </body>
 <html>

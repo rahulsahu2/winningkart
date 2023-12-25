@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <?php 
+    $env = env('API_IMAGE_URL');
     $data = json_decode($data,true);
 ?>
 
@@ -17,7 +18,7 @@
                         <div class="faqOptionBox">
                             <a href="{{route('FaqDetail',$slug)}}">
                             <div class="faqIcon">
-                                <img src="{{$env.'/uploads/icons'.$slug}}.png" alt="{{$id['category'] ?? ''}}">  
+                                <img src="{{$env.'/uploads/icons/'.strtolower($slug)}}.png" alt="{{$id['category'] ?? ''}}">  
                             </div>
                             <h3>{{$id['category'] ?? ''}}</h3>
                             </a>

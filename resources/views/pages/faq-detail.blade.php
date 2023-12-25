@@ -14,14 +14,14 @@
                         @if($data)
                         @Foreach($data['faqs'] as $id)
                         <div class="card">
-                            <div class="accordHeader card-header" id="headingOne">
-                                <div class="faqAccrdTitle text-left collapsed" data-toggle="collapse" data-target="#collapseOne" 
+                            <div class="accordHeader card-header" id="heading_{{$id['id']}}">
+                                <div class="faqAccrdTitle text-left collapsed" data-toggle="collapse" data-target="#collapse_{{$id['id']}}" 
                                 aria-expanded="true" aria-controls="collapseOne">
                                 <h3 class="justify-content-between">{{$id['question']}}<i class="bi bi-chevron-right"></i></h3>
                                 </div>
                             </div>
                         
-                            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                            <div id="collapse_{{$id['id']}}" class="collapse" aria-labelledby="heading_{{$id['id']}}" data-parent="#accordionExample">
                                 <div class="card-body">
                                     <div class="faqDescBox">
                                     <p>{!! $id['answer']!!}</p>

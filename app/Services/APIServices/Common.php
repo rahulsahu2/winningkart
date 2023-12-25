@@ -113,6 +113,10 @@ class Common
         return $this->GetResult(APIPaths::$baseUrl.APIPaths::BRAND_DETAILS.$slug);
     }
 
+    public function GetCategoryDetails($slug){
+        return $this->GetResult(APIPaths::$baseUrl.APIPaths::CATEGORY_DETAILS.$slug);
+    }
+
 
 
     public static function GetHeader(){

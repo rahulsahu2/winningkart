@@ -16,9 +16,14 @@ class CategoryController extends Controller
      /**
      * Display content of privacy policy page.
      */
-    public function Category($id)
+    public function Index($slug)
     {
-        $data = $this->common->GetProducts();
-        return view('category.index',compact('data'));
+        $res = $this->common->GetCategoryDetails($slug);
+        $data = json_decode($res);
+        if($data->status)
+            return view('category.index',compact('data'));
+        else{
+            return view('error.404');
+        }
     }
 }

@@ -66,6 +66,11 @@ Class APIPaths{
 
     //brands end
 
+    //category start
+
+    //category end
+    const CATEGORY_DETAILS = 'category-details/';
+
     //blog-section start
 
     const BLOG="blog?page=";
