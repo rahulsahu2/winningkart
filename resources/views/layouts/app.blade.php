@@ -55,7 +55,6 @@
     <link rel="stylesheet" href="{{asset('assets/css/swiper-bundle.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/xzoom.css')}}">
     <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/css/swiper.css">-->
-    <!--<link rel="stylesheet" href="assets/product-zoom/xzoom.css">-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <script>
         document.querySelector('#meta-location').setAttribute('content', location.href);
@@ -526,10 +525,10 @@ function decreaseValue() {
         });
     </script>
     
-<script src="assets/product-zoom/setup.js"></script>
-<script src="assets/product-zoom/foundation.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>    
+<script src="{{asset('assets/product-zoom/setup.js')}}"></script>
+<script src="{{asset('assets/product-zoom/foundation.min.js')}}"></script>
 <!--<script src="{{asset('assets/js/jquery.slim.min.js')}}"></script>-->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 <script src="{{asset('assets/js/popper.min.js')}}"></script>
 <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
 <!-- Swiper JS -->
@@ -537,8 +536,8 @@ function decreaseValue() {
 <script src="{{asset('assets/js/swiper-bundle.min.js')}}"></script>
 <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/js/swiper.jquery.js"></script>-->
 <script src="{{asset('assets/js/main.js')}}"></script>
-<script src="{{asset('assets/js/custom.js')}}"></script>
-<script src="{{asset('assets/js/xzoom.min.js')}}"></script>
+<script src="{{asset('assets/product-zoom/custom.js')}}"></script>
+<script src="{{asset('assets/product-zoom/xzoom.min.js')}}"></script>
 
 </body>
 <html>

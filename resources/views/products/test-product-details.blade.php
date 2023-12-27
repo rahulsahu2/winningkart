@@ -21,15 +21,35 @@ $productIngredient = $data['productIngredient'] ?? [];
                 </div>
             </div>
         </div>
- <div class="product-detile-box">
+        <div class="product-detile-box">
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="productGallerymain">
+                            <!-- <div class="productThumbnail">
+                                <div class="productThumbnailinner " >
+                                    <div class="productThumbnailcard">
+                                        <img src="assets/images/budget-1.jpeg" alt="">
+                                    </div>
+                                    <div class="productThumbnailcard">
+                                        <img src="assets/images/budget-2.jpeg" alt="">
+                                    </div>
+                                    <div class="productThumbnailcard">
+                                        <img src="assets/images/budget-3.jpeg" alt="">
+                                    </div>
+                                    <div class="productThumbnailcard">
+                                        <img src="assets/images/budget-4.jpeg" alt="">
+                                    </div>
+                                    <div class="productThumbnailcard">
+                                        <img src="assets/images/budget-1.jpeg" alt="">
+                                    </div>
+                                    
+                                </div>
+                            </div> -->
                             <div class="productMainPreview">
                                 <div class="xzoomMain">
-                                    <img class="xzoom" id="xzoom-default" src="../assets/images/gallery/preview/01_b_car.jpg" 
-                                    xoriginal="../assets/images/gallery/original/01_b_car.jpg" xpreview="../assets/images/gallery/preview/01_b_car.jpg"/>
+                                    <img class="xzoom" id="xzoom-default" src="assets/images/gallery/preview/01_b_car.jpg" 
+                                    xoriginal="assets/images/gallery/original/01_b_car.jpg" xpreview="../assets/images/gallery/preview/01_b_car.jpg"/>
                                 </div>
                                 <div class="xzoom-thumbs">
                                     <a class="" href="../assets/images/gallery/original/01_b_car.jpg">
@@ -224,7 +244,7 @@ $productIngredient = $data['productIngredient'] ?? [];
                                         <div class="moreCateCard">
                                             <div class="moreCateCardImg">
                                                 <a href="#!">
-                                                    <img src="../assets/images/categoryimage.avif" alt="">
+                                                    <img src="assets/images/categoryimage.avif" alt="">
                                                 </a>
                                             </div>
                                             <h3>Category Title</h3>
@@ -298,7 +318,7 @@ $productIngredient = $data['productIngredient'] ?? [];
                                     <div class="add-review">
                                         <div class="d-flex align-items-center right-review">
                                             <div class="review-imag-box">
-                                                <img src="../assets/images/review-imag.png">
+                                                <img src="assets/images/review-imag.png">
                                             </div>
                                             <div class="review-text">
                                                 <h3>Mr. Gautam</h3>
@@ -341,4 +361,53 @@ $productIngredient = $data['productIngredient'] ?? [];
                 </div>
             </div>
         </div>
+        <!-- Fixcart -->
+        <section class="addreview">
+            <div class="row mr-0 justify-content-end">
+                <div class="col-lg-3 px-0">
+                    <div class="fixedCartMain position-relative">
+                        <div class="fixedCartInner ">
+                            <div class="fixCartHead">
+                                <h2>Add a Review</h2>
+                                <a class="fxCloseCart pointer text-decoration-none text-dark"><i class="bi bi-x-lg"></i></a>
+                            </div>
+                            <div class="fixCartproductsmain">
+                                <p style="line-height: 23px;">Your email address will not be published. Required fields are marked <span class="star-r">*</span></p>
+                                <div class="address-form">
+                                    <div class="rating">
+                                        <input type="radio" id="star5" name="rating" value="5" />
+                                        <label class="star" for="star5" title="Awesome" aria-hidden="true"></label>
+                                        <input type="radio" id="star4" name="rating" value="4" />
+                                        <label class="star" for="star4" title="Great" aria-hidden="true"></label>
+                                        <input type="radio" id="star3" name="rating" value="3" />
+                                        <label class="star" for="star3" title="Very good" aria-hidden="true"></label>
+                                        <input type="radio" id="star2" name="rating" value="2" />
+                                        <label class="star" for="star2" title="Good" aria-hidden="true"></label>
+                                        <input type="radio" id="star1" name="rating" value="1" />
+                                        <label class="star" for="star1" title="Bad" aria-hidden="true"></label>
+                                    </div>
+                                    <div class="">
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">Your review <span class="star-r">*</span></label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="7"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">Name <span class="star-r">*</span></label>
+                                            <input type="text" placeholder="Name" class="form-control" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="exampleFormControlTextarea1">Email ID <span class="star-r">*</span></label>
+                                            <input type="text" placeholder="Email ID" class="form-control" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="fixCartButton">
+                                <a href="#!" class="cartProceed">Submit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         @endsection

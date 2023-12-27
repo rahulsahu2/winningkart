@@ -25,6 +25,11 @@ class ProductController extends Controller
     public function Product_details($slug)
     {
         $data = $this->common->GetProductDetails($slug);
-        return view('products.product-details',compact('data'));
+        $res = json_decode($data);
+        if($res->isFound)
+            return view('products.product-details-old',compact('data'));
+        else{
+            return view('error.404');
+        }
     }
 }

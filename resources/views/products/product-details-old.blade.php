@@ -7,7 +7,7 @@ $env = env("API_IMAGE_URL");
 $product = $data['product'] ?? [];
 $category = $data['product']['category'] ?? [];
 $varinats = $data['product']['active_variants'] ?? [];
-$gallery = $data["gallery"] ??[];
+$gallery = $data["gellery"] ??[];
 $productDescription = $data['productDescription'] ?? [];
 $productIngredient = $data['productIngredient'] ?? [];
 
@@ -38,6 +38,13 @@ $productIngredient = $data['productIngredient'] ?? [];
                             <a class="xzoom-gallery xactive" href="{{$env.$product['thumb_image']}}">
                                 <img class="xzoom-gallery" src="{{$env.$product['thumb_image']}}" width=80 height=80>
                             </a>
+                            @foreach($gallery as $img)
+                                @if($img['status'] == 1)
+                                <a class="xzoom-gallery xactive" href="{{$env.$img['image']}}">
+                                    <img class="xzoom-gallery" src="{{$env.$img['image']}}" width=80 height=80>
+                                </a>
+                                @endif
+                            @endforeach
                         </div>
                     </div>
                 </div>
