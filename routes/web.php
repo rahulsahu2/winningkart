@@ -15,7 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 //Frontend Routes START ******************************************************
 
-Route::get('/',[HomeController::class,'index'])->name('home');
+Route::controller(HomeController::class)->group(function () {
+    Route::get('/', 'index')->name("home");
+    Route::get('/offers', 'Offers')->name("offers");
+    Route::get('/luxe-range', 'LuxuryRange')->name("luxeRange");
+});
 Route::get('/privacy-policy',[PageController::class,'privacyPolicy'])->name('privacyPolicy');
 Route::get('/tnc',[PageController::class,'TermsandConditions'])->name('TermsandConditions');
 Route::get('/faq',[PageController::class,'FaQ'])->name('FaQ');

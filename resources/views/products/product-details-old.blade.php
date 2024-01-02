@@ -7,6 +7,7 @@ $env = env("API_IMAGE_URL");
 $product = $data['product'] ?? [];
 $category = $data['product']['category'] ?? [];
 $varinats = $data['product']['active_variants'] ?? [];
+$category = $data['product']['category'] ?? [];
 $gallery = $data["gellery"] ??[];
 $productDescription = $data['productDescription'] ?? [];
 $productIngredient = $data['productIngredient'] ?? [];
@@ -16,7 +17,7 @@ $productIngredient = $data['productIngredient'] ?? [];
     <div class="breadcrumbMain">
         <div class="breadcrumbInner">
             <a href="{{Route('home')}}">Home <i class="bi bi-chevron-right"></i></a>
-            <a href="{{Route('category',$product['category_id'] ?? '')}}">{{$category['name'] ?? 'NA'}}<i class="bi bi-chevron-right"></i></a>
+            <a href="{{Route('category',$category['slug'] ?? '')}}">{{$category['name'] ?? 'NA'}}<i class="bi bi-chevron-right"></i></a>
             <a>{{$product['name'] ?? ''}}</a>
         </div>
     </div>
@@ -77,15 +78,18 @@ $productIngredient = $data['productIngredient'] ?? [];
                     </div>
 
                     <div class="productVariationsbx">
-                        <h3>Select Variant</h3>
+                     @foreach($varinats as $var)
+                        <h3>Select {{$var['name']}}</h3>
                         <div class="productVariationslist">
-                            @foreach($varinats as $var)
+                            @php $subv = $var['active_variant_items'] ?? []; @endphp
+                            @foreach($subv as $s)
                             <div class="productVariations">
-                                <input type="radio" id="{{$var['id']}}" name="{{$var['name']}}" {{$product['id'] == $var['product_id'] ? 'checked':''}}>
-                                <label for="vari1">{{$var['name']}}</label>
+                                <input type="radio" id="{{$s['id']}}" name="{{$s['name']}}">
+                                <label for="vari1">{{$s['name']}}</label>
                             </div>
                             @endforeach
                         </div>
+                        @endforeach
                     </div>
 
                     <div class="product-qty d-flex mb-3 align-items-center">

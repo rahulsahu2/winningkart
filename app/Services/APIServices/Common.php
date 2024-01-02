@@ -117,6 +117,14 @@ class Common
         return $this->GetResult(APIPaths::$baseUrl.APIPaths::CATEGORY_DETAILS.$slug);
     }
 
+    public function GetLuxeDetails(){
+        return $this->GetResult(APIPaths::$baseUrl.APIPaths::LUXE_DETAILS);
+    }
+
+    public function GetOfferDetails(){
+        return $this->GetResult(APIPaths::$baseUrl.APIPaths::OFFER_DETAILS);
+    }
+
 
 
     public static function GetHeader(){

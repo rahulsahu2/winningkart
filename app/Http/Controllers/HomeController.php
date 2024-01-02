@@ -25,53 +25,26 @@ class HomeController extends Controller
         return view('home',compact('commonsetting','setting','myShop', 'GetTopRatedProducts','GetFlashSaleProductsList','FeaturedProductsList','NewProductsList'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    public function Offers()
     {
-        //
+        $res = $this->common->GetOfferDetails();
+        $data = json_decode($res);
+        if($data->status)
+            return view('offer_Details',compact('data'));
+        else{
+            return view('error.404');
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function LuxuryRange()
     {
-        //
+        $res = $this->common->GetLuxeDetails();
+        $data = json_decode($res);
+        if($data->status)
+            return view('luxe_details',compact('data'));
+        else{
+            return view('error.404');
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

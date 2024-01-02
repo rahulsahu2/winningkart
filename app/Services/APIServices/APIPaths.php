@@ -71,6 +71,8 @@ Class APIPaths{
     //category end
     const CATEGORY_DETAILS = 'category-details/';
 
+    const LUXE_DETAILS = 'luxe-details/';
+    const OFFER_DETAILS = 'offer-details';
     //blog-section start
 
     const BLOG="blog?page=";

@@ -184,7 +184,7 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        <li><a href="offers.html">Offer</a>
+                                        <li><a href="{{Route('offers')}}">Offer</a>
                                         </li>
                                         <li><a href="winning-kart-fashion.html">Winning Kart</a>
                                             <div class="megaSubmenumain">
@@ -219,7 +219,7 @@
                                                 </div>
                                             </div>
                                         </li>
-                                        <li><a href="luxe-range.html">Luxe Range</a></li>
+                                        <li><a href="{{Route('luxeRange')}}">Luxe Range</a></li>
                                         <li><a href="{{Route('products')}}">Shop All Products</a></li>
                                         <li><a href="combos.html">Combos</a></li>
                                     </ul>
